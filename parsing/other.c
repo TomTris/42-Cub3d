@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:52 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/09 17:01:00 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/09 18:50:45 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,18 @@ int	is_empty_line(char *line)
 			return (0);		
 	}
 	return (1);
+}
+
+void	free_t_map(t_map *a)
+{
+	if (a)
+	{
+		free(a->no);
+		free(a->so);
+		free(a->ea);
+		free(a->we);
+		free_split(a->map);
+	}
+	free(a);
+	return (0);
 }

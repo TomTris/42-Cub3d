@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:44:42 by qdo               #+#    #+#             */
-/*   Updated: 2024/05/12 00:43:12 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/09 19:03:37 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ int	print_fd(int fd, const char *str_o, ...)
 	va_start(args, str_o);
 	cnt = ft_printf2(str, args, fd);
 	va_end(args);
+	if (cnt == -1)
+		perror("write");
 	return (cnt);
 }
