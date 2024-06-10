@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:02:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 17:38:38 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 20:57:00 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_fill_map(char **ret, int i, char **file_content)
 	int	a;
 	int	b;
 
-	printf("\n\n----------------------\n");
 	a = 1;
 	while (ret[a] && file_content[i])
 	{
@@ -53,18 +52,13 @@ void	ft_fill_map(char **ret, int i, char **file_content)
 				ret[a][b + 1] = '0';
 			else
 				ret[a][b + 1] = file_content[i][b];
-			b++;
 		}
-		// printf("++{%s}\n", file_content[i]);
-		printf("::{%s]\n", ret[a]);
-		// printf("----------\n");
 		a++;
 		i++;
 	}
 	if (ret[a + 1] != NULL || file_content[i] != NULL)
 		print_fd(2, "Error\nft_fill_map\n");
 }
-
 
 //1 -> 1
 //0 or ' ' -> 0
@@ -75,7 +69,7 @@ char	**map_gen(char **file_content, int i)
 	int		i2;
 	int		len_est;
 	int		len_temp;
-	char	**ret;
+	char	**map;
 
 	i2 = i;
 	len_est = ft_strlen(file_content[i]);
@@ -87,19 +81,14 @@ char	**map_gen(char **file_content, int i)
 	}
 	if (i - 2 <= i2)
 		return (print_fd(2, "Error\nInvalid map2\n"), NULL);
-	ret = ft_create_ret_map(i - i2 + 2, len_est + 2);
-	if (ret == 0)
+	map = ft_create_ret_map(i - i2 + 2, len_est + 2);
+	if (map == 0)
 		return (NULL);
-	i = 0;
-	while (ret[i])
-		printf("%s\n", ret[i++]);
-	printf("\n\n\n");
-	i = 0;
-	while (file_content[i])
-		printf("%s\n", file_content[i++]);
-	printf("\n\n\n");
-	ft_fill_map(ret, i2, file_content);
-	if (!is_surrounded(ret))
-		return (free_split(ret), NULL);
-	return (ret);
+	ft_fill_map(map, i2, file_content);
+	if (!is_surrounded(map))
+		return (free_split(map), NULL);
+	return (map);
 }
+
+// assert(file_content);
+// #include <assert.h>
