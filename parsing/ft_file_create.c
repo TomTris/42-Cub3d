@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:08 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 12:19:45 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 17:05:57 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ char	**ft_file_create2(char **ret, int fd)
 	char	*temp;
 
 	temp = get_next_line(fd);
-	while (temp != NULL && is_empty_line(temp) == 1)
-		free(temp);
 	while (temp != NULL)
 	{
 		j = 0;
@@ -64,11 +62,9 @@ char	**ft_file_create2(char **ret, int fd)
 		ret = smerge(ret, temp);
 		free(temp);
 		if (ret == 0)
-			return (close(fd), NULL);
+			return (NULL);
 		temp = get_next_line(fd);
 	}
-	if (close(fd) == -1)
-		return (perror("close"), free_split(ret), NULL);
 	return (ft_file_create3(ret));
 }
 
@@ -87,6 +83,8 @@ char	**ft_file_create(int ac, char **av, char *file_name)
 		return (NULL);
 	ret = ft_file_create2(ret, fd);
 	get_next_line(-1);
+	if (close(fd) == -1)
+		return (perror("close"), free_split(ret), NULL);
 // int i = 0;
 // while (ret[i])
 // 	printf("%s\n", ret[i++]);

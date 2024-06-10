@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:52 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 13:13:31 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 17:10:04 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	**smerge(char **dest, char *src)
 
 	if (dest == 0)
 	{
-		dest = (char **)malloc(1 * sizeof(char *));
-		if (dest == 0)
+		ret = (char **)malloc(1 * sizeof(char *));
+		if (ret == 0)
 			return (perror("Malloc faile1d\n"), NULL);
-		dest[0] = NULL;
-		return (dest);
+		ret[0] = NULL;
+		return (ret);
 	}
 	i = 0;
 	while (dest[i] != 0)
@@ -31,10 +31,10 @@ char	**smerge(char **dest, char *src)
 	ret = (char **)malloc((i + 2) * sizeof(char *));
 	if (ret == 0)
 		return (perror("Malloc failed\n"), free_split(dest), NULL);
+	ret[i + 1] = NULL;
 	ret[i] = ft_strdup(src);
 	if (ret[i] == 0)
 		return (free_split(dest), free(ret), NULL);
-	ret[i + 1] = NULL;
 	while (--i >= 0)
 		ret[i] = dest[i];
 	free(dest);

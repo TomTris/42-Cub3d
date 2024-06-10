@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 13:29:14 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 16:23:06 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,10 @@ int			free_split(char **to_free2);
 char		**smerge(char **dest, char *src);
 void		free_t_map(t_map *a);
 int			ft_is_part_of_map(char *line);
+
+//map_gen.c
+char		**map_gen(char **file_content, int i);
+//map_gen2.c
+int			is_surrounded(char **map);
 
 #endif
