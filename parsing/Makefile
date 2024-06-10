@@ -1,6 +1,5 @@
 CC = cc
-CFLAGS = 
-# -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 NAME = parsing
 LIBFT_DIR = libft
 LIBFT_A = libft/libft.a
