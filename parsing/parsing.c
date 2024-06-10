@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 12:02:32 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 12:21:34 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ t_map	*ft_map(int ac, char **av)
 		return (NULL);
 	i = 0;
 	ret = break_non_map(file_content, &i);
+	free_split(file_content);
 	if (ret == 0)
 		return (NULL);
 	// ret = map_gen(ret, i);
 	return (ret);
 }
 
-int	main(int ac, char **av)
+int	main2(int ac, char **av)
 {
 	t_map	*map;
 
@@ -41,15 +42,22 @@ int	main(int ac, char **av)
 		print_fd(1, "Somewhere wrong\n");
 	else
 	{
-		printf("no = {%s}\n", map->no);
-		printf("so = {%s}\n", map->so);
-		printf("we = {%s}\n", map->we);
-		printf("ea = {%s}\n", map->ea);
-		printf("f = {%u}\n", map->floor);
-		printf("c = {%u}\n", map->ceiling);
+		// printf("no = {%s}\n", map->no);
+		// printf("so = {%s}\n", map->so);
+		// printf("we = {%s}\n", map->we);
+		// printf("ea = {%s}\n", map->ea);
+		// printf("f = {%u}\n", map->floor);
+		// printf("c = {%u}\n", map->ceiling);
 		print_fd(2, "Code for this case good!\n");
 	}
 	free_t_map(map);
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	main2(ac, av);
+	system("leaks parsing");
 }
 
 // int	player_cnt(char *line)
