@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:12:23 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 11:47:48 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 12:18:28 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,13 @@ t_map	*break_non_map(char **file_content, int *i)
 	t_map	*ret;
 
 	non_map = before_map_good(file_content, i);
-printf("\nMeaningful lines before map\n");
-int j = 0;
-while(non_map[j])
-	printf("%s\n", non_map[j++]);
-printf("\nMeaningful lines = %d\n", *i);
 	if (non_map == NULL)
 		return (NULL);
+// printf("\nMeaningful lines before map\n");
+// int j = 0;
+// while(non_map[j])
+// 	printf("%s\n", non_map[j++]);
+// printf("\nTo have all meaningful lines, checked %d lines\n", *i);
 	ret = (t_map *)malloc(1 * sizeof(t_map));
 	if (ret == NULL)
 		return (perror("Malloc"), free(non_map), NULL);

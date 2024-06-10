@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:08 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 11:57:09 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 12:19:45 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**ft_file_create3(char **ret)
 	i = 0;
 	while (ret[i])
 		i++;
-	printf("i = %d\n", i);
+	// printf("files has %d or %d lines\n", i, i + 1);
 	if (i < 9)
 		return (print_fd(2, "Error\nToo little infos\n"),
 			free_split(ret), NULL);
@@ -87,9 +87,9 @@ char	**ft_file_create(int ac, char **av, char *file_name)
 		return (NULL);
 	ret = ft_file_create2(ret, fd);
 	get_next_line(-1);
-int i = 0;
-while (ret[i])
-	printf("%s\n", ret[i++]);
+// int i = 0;
+// while (ret[i])
+// 	printf("%s\n", ret[i++]);
 	return (ret);
 }
 
