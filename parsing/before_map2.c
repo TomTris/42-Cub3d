@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:32:33 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 13:23:43 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 13:37:22 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,21 @@ int	fill_i_3(t_map *ret, int nbr, char *line_rest, int *color_change)
 	else
 		set = &(ret->ceiling);
 	if (ft_convert_to_color(line_rest + i, set) == 0)
+		return (0);
+	return (1);
+}
+
+int	fill_i_2(char **to_set, char *line_rest)
+{
+	int	i;
+
+	i = 0;
+	while (line_rest[i] == ' ')
+		i++;
+	if (*to_set || !line_rest[i])
+		return (print_fd(2, "Error\nInvalid infos2\n"), 0);
+	*to_set = ft_trim_whitespace(line_rest + i);
+	if (*to_set == 0)
 		return (0);
 	return (1);
 }
