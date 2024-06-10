@@ -6,18 +6,16 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:12:23 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 12:18:28 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 13:21:01 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-char	**before_map_good(char **file_content, int *i)
+char	**before_map_good(char **file_content, int *i, int cnt_line_not_map)
 {
-	int		cnt_line_not_map;
 	char	**ret;
 
-	cnt_line_not_map = 0;
 	ret = smerge(0, 0);
 	if (ret == 0)
 		return (NULL);
@@ -30,13 +28,13 @@ char	**before_map_good(char **file_content, int *i)
 				return (NULL);
 			cnt_line_not_map++;
 		}
+		if (cnt_line_not_map > 6)
+			return (print_fd(2, "Error\nToo many/ Wrong infos\n"),
+				free_split(ret), NULL);
 		(*i)++;
 	}
-	if (cnt_line_not_map > 6)
-		return (print_fd(2, "Error\nToo many infos1\n"),
-			free_split(ret), NULL);
 	if (cnt_line_not_map < 6)
-		return (print_fd(2, "Error\nToo little infos2\n"),
+		return (print_fd(2, "Error\nToo little infos\n"),
 			free_split(ret), NULL);
 	return (ret);
 }
@@ -89,8 +87,8 @@ t_map	*ft_break_non_map(t_map *ret, char **non_map)
 	int	i;
 	int	color_change;
 
-	i = 0;
 	color_change = 0;
+	i = 0;
 	while (i < 6)
 	{
 		if (non_map[i] == 0)
@@ -111,14 +109,14 @@ t_map	*break_non_map(char **file_content, int *i)
 	char	**non_map;
 	t_map	*ret;
 
-	non_map = before_map_good(file_content, i);
+	non_map = before_map_good(file_content, i, 0);
 	if (non_map == NULL)
 		return (NULL);
 // printf("\nMeaningful lines before map\n");
 // int j = 0;
 // while(non_map[j])
 // 	printf("%s\n", non_map[j++]);
-// printf("\nTo have all meaningful lines, checked %d lines\n", *i);
+// printf("\nTo have all meaningful lines, checked %d lines\n", *i + 1);
 	ret = (t_map *)malloc(1 * sizeof(t_map));
 	if (ret == NULL)
 		return (perror("Malloc"), free(non_map), NULL);

@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:52 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 11:29:36 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 13:13:31 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,20 +89,23 @@ void	free_t_map(t_map *a)
 int	ft_is_part_of_map(char *line)
 {
 	int		i;
-	char	temp;
 	int		cnt;
+	int		player_cnt;
 
-	i = 0;
 	cnt = 0;
-	while (line[i])
+	player_cnt = 0;
+	i = -1;
+	while (line[++i])
 	{
-		temp = line[i];
-		if (temp == ' ' || temp == '1' || temp == '0'
-			|| temp == 'N' || temp == 'W' || temp == 'S' || temp == 'E')
+		if (line[i] == ' ' || line[i] == '1' || line[i] == '0' || line[i] == 'N'
+			|| line[i] == 'W' || line[i] == 'S' || line[i] == 'E')
 		{
-			if (temp == '0' || temp == '1')
+			if (line[i] == '0' || line[i] == '1')
 				cnt++;
-			i++;
+			else if (line[i] != ' ')
+				player_cnt++;
+			if (player_cnt > 1)
+				return (0);
 		}
 		else
 			return (0);

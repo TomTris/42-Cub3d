@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 11:52:01 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 12:32:03 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char		**ft_file_create3(char **ret);
 int			ft_check_args(int ac, char **av);
 
 //before_map1.c
-char		**before_map_good(char **file_content, int *i);
+char		**before_map_good(char **file_content, int *i,
+				int cnt_line_not_map);
 int			fill_i_2(char **to_set, char *line_rest);
 int			fill_i(t_map *ret, char *line, int *color_change);
 t_map		*ft_break_non_map(t_map *ret, char **non_map);

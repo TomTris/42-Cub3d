@@ -6,26 +6,11 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:32:33 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 12:10:10 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 13:23:43 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-int	ft_convert_to_color_pre_check(char *line_rest)
-{
-	int		i;
-	char	a;
-
-	i = -1;
-	while (line_rest[++i])
-	{
-		a = line_rest[i];
-		if (!(a == ',' || (a >= '0' && a <= '9') || a == ' '))
-			return (0);
-	}
-	return (1);
-}
 
 int	ft_find_nbr(char *line_rest, int *i, unsigned int *set)
 {
@@ -71,8 +56,7 @@ int	ft_convert_to_color(char *line_rest, unsigned int *set)
 	unsigned int	nbr3;
 
 	i = 0;
-	if (!ft_convert_to_color_pre_check(line_rest)
-		|| !ft_find_nbr(line_rest, &i, &nbr1) || !ft_skip_comma(line_rest, &i)
+	if (!ft_find_nbr(line_rest, &i, &nbr1) || !ft_skip_comma(line_rest, &i)
 		|| !ft_find_nbr(line_rest, &i, &nbr2) || !ft_skip_comma(line_rest, &i)
 		|| !ft_find_nbr(line_rest, &i, &nbr3))
 		return (0);
@@ -83,6 +67,7 @@ int	ft_convert_to_color(char *line_rest, unsigned int *set)
 			print_fd(2, "Error\nInvalid infos\n");
 			return (0);
 		}
+		i++;
 	}
 	*set = nbr1 << 24 | nbr2 << 16 | nbr3 << 8 | 255;
 	return (1);
@@ -108,3 +93,19 @@ int	fill_i_3(t_map *ret, int nbr, char *line_rest, int *color_change)
 		return (0);
 	return (1);
 }
+
+// int	ft_convert_to_color_pre_check(char *line_rest)
+// {
+// 	int		i;
+// 	char	a;
+
+// 	i = -1;
+// 	while (line_rest[++i])
+// 	{
+// 		a = line_rest[i];
+// 		if (!(a == ',' || (a >= '0' && a <= '9') || a == ' '))
+// 			return (print_fd(2,
+// 					"Error\nInvalid character in field number of color\n"), 0);
+// 	}
+// 	return (1);
+// }
