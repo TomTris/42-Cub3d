@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 12:21:34 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 13:17:29 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main2(int ac, char **av)
 int	main(int ac, char **av)
 {
 	main2(ac, av);
-	system("leaks parsing");
+	// system("leaks parsing");
 }
 
 // int	player_cnt(char *line)
