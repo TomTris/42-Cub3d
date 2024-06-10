@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 12:32:03 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 13:29:14 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_map		*ft_break_non_map(t_map *ret, char **non_map);
 t_map		*break_non_map(char **file_content, int *i);
 
 //before_map2.c
-int			ft_convert_to_color_pre_check(char *line_rest);
+// int			ft_convert_to_color_pre_check(char *line_rest);
 int			ft_find_nbr(char *line_rest, int *i, unsigned int *set);
 int			ft_skip_comma(char *line_rest, int *i);
 int			ft_convert_to_color(char *line_rest, unsigned int *set);
@@ -53,4 +53,5 @@ int			free_split(char **to_free2);
 char		**smerge(char **dest, char *src);
 void		free_t_map(t_map *a);
 int			ft_is_part_of_map(char *line);
+
 #endif

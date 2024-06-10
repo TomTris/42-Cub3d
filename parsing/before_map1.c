@@ -6,11 +6,40 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:12:23 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 13:21:01 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 13:49:06 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+int	map_n_player(char **file_content, int i)
+{
+	int		player_cnt;
+	int		j;
+	char	a;
+
+	player_cnt = 0;
+	while (file_content[i])
+	{
+		if (is_empty_line(file_content[i]) == 1)
+			return (print_fd(2, "Error\nEmpty line in map\n"), 0);
+		j = 0;
+		while (file_content[i][j])
+		{
+			a = file_content[i][j];
+			if (a != 'N' && a != 'S' && a != 'W' && a != 'E'
+				&& a != ' ' && a != '1' && a != '0')
+				return (print_fd(2, "Error\nInvalid character in map\n"), 0);
+			if (a == 'N' || a == 'S' || a == 'W' || a == 'E')
+				player_cnt++;
+			if (player_cnt > 1)
+				return (print_fd(2, "Error\nToo many player\n"), 0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 char	**before_map_good(char **file_content, int *i, int cnt_line_not_map)
 {
@@ -33,25 +62,12 @@ char	**before_map_good(char **file_content, int *i, int cnt_line_not_map)
 				free_split(ret), NULL);
 		(*i)++;
 	}
+	if (!map_n_player(file_content, *i))
+		return (free_split(ret), NULL);
 	if (cnt_line_not_map < 6)
 		return (print_fd(2, "Error\nToo little infos\n"),
 			free_split(ret), NULL);
 	return (ret);
-}
-
-int	fill_i_2(char **to_set, char *line_rest)
-{
-	int	i;
-
-	i = 0;
-	while (line_rest[i] == ' ')
-		i++;
-	if (*to_set || !line_rest[i])
-		return (print_fd(2, "Error\nInvalid infos2\n"), 0);
-	*to_set = ft_trim_whitespace(line_rest + i);
-	if (*to_set == 0)
-		return (0);
-	return (1);
 }
 
 int	fill_i(t_map *ret, char *line, int *color_change)
