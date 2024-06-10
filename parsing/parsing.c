@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 13:17:29 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 17:16:45 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ t_map	*ft_map(int ac, char **av)
 		return (NULL);
 	i = 0;
 	ret = break_non_map(file_content, &i);
-	free_split(file_content);
 	if (ret == 0)
 		return (NULL);
-	// ret = map_gen(ret, i);
+	ret->map = map_gen(file_content, i);
+	free_split(file_content);
+	if (ret->map == 0)
+		return (free_t_map(ret), NULL);
 	return (ret);
 }
 

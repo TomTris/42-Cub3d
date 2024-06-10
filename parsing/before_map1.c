@@ -6,17 +6,15 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:12:23 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 13:49:06 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 15:53:59 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	map_n_player(char **file_content, int i)
+int	map_n_player(char **file_content, int i, char a, int j)
 {
 	int		player_cnt;
-	int		j;
-	char	a;
 
 	player_cnt = 0;
 	while (file_content[i])
@@ -38,6 +36,8 @@ int	map_n_player(char **file_content, int i)
 		}
 		i++;
 	}
+	if (player_cnt == 0)
+		return (print_fd(2, "Error\nNo starting view point\n"), 0);
 	return (1);
 }
 
@@ -62,7 +62,7 @@ char	**before_map_good(char **file_content, int *i, int cnt_line_not_map)
 				free_split(ret), NULL);
 		(*i)++;
 	}
-	if (!map_n_player(file_content, *i))
+	if (!map_n_player(file_content, *i, 0, 0))
 		return (free_split(ret), NULL);
 	if (cnt_line_not_map < 6)
 		return (print_fd(2, "Error\nToo little infos\n"),

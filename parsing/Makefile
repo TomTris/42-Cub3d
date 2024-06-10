@@ -1,5 +1,6 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = 
+# -Wall -Werror -Wextra
 NAME = parsing
 LIBFT_DIR = libft
 LIBFT_A = libft/libft.a
@@ -9,6 +10,8 @@ SRC		= 	parsing.c\
 			before_map1.c\
 			before_map2.c\
 			ft_file_create.c\
+			map_gen.c\
+			map_gen2.c\
 			other.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
