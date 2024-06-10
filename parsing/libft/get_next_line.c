@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 20:55:32 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 10:25:55 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 11:00:09 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*sndup(char *str, int n)
 		return (0);
 	ret = (char *)malloc(n + 1);
 	if (ret == 0)
-		return (perror("Malloc"), 0);
+		return (perror("Malloc"), NULL);
 	i = -1;
 	while (++i < n)
 		ret[i] = str[i];

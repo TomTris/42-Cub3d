@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:52 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 10:35:54 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 11:29:36 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ char	**smerge(char **dest, char *src)
 		i++;
 	ret = (char **)malloc((i + 2) * sizeof(char *));
 	if (ret == 0)
-		return (perror("Malloc faile2d\n"), free_split(dest), NULL);
+		return (perror("Malloc failed\n"), free_split(dest), NULL);
 	ret[i] = ft_strdup(src);
 	if (ret[i] == 0)
-		return (perror("ft_strdup"), free_split(dest), free(ret), NULL);
+		return (free_split(dest), free(ret), NULL);
 	ret[i + 1] = NULL;
 	while (--i >= 0)
 		ret[i] = dest[i];
@@ -81,7 +81,6 @@ void	free_t_map(t_map *a)
 		free_split(a->map);
 	}
 	free(a);
-	return (0);
 }
 
 //return 0 -> not the part of map
