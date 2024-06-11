@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 18:03:55 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 18:22:03 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ t_map	*ft_map(int ac, char **av)
 	return (ret);
 }
 
-int	main(int ac, char **av)
-{
-	t_map	*map;
+// int	main(int ac, char **av)
+// {
+// 	t_map	*map;
 
-	map = ft_map(ac, av);
-	if (map == 0)
-		return (1);
-	return (0);
-}
+// 	map = ft_map(ac, av);
+// 	if (map == 0)
+// 		return (1);
+// 	return (0);
+// }
