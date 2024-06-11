@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:08 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 13:42:43 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 18:03:06 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@ int	ft_check_args(int ac, char **av)
 	int	len;
 
 	if (ac != 2)
-	{
-		print_fd(2,
-			"Error\nName of the file for map designing purpose needed!\n");
-		return (0);
-	}
+		return (print_fd(2,
+			"Error\nFile '.cub' is also needed!\n"), 0);
 	len = ft_strlen(av[1]);
 	if (len < 4 || av[1][len - 1] != 'b' || av[1][len -2] != 'u'
 		|| av[1][len - 3] != 'c' || av[1][len - 4] != '.')
-	{
-		print_fd(2, "Error\nWrong name\n");
-		return (0);
-	}
+		return (print_fd(2, "Error\nWrong name\n"), 0);
 	return (1);
 }
 
@@ -83,10 +77,9 @@ int	new_line_at_the_end(char *file_name, int new_line)
 			return (perror("Error\nread"), close(fd), 1);
 		if (cnt == 0)
 			break ;
+		new_line = 0;
 		if (buf[cnt - 1] == '\n')
 			new_line = 1;
-		else
-			new_line = 0;
 	}
 	if (close(fd) == -1)
 		return (perror("Error\nclose"), 1);

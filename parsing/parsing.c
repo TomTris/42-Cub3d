@@ -6,11 +6,30 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 13:31:09 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 18:03:55 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+void	ft_1_0_map(char **map)
+{
+	int		i;
+	int		j;
+	char	a;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			a = map[i][j];
+			if (a != '1')
+				map[i][j] = '0';
+		}
+	}
+}
 
 //non_map contains 8 meaningfull lines with meaning full value, check only
 //before line ft_is_part_of_map
@@ -32,31 +51,16 @@ t_map	*ft_map(int ac, char **av)
 	free_split(file_content);
 	if (ret->map == 0)
 		return (free_t_map(ret), NULL);
+	ft_1_0_map(ret->map);
 	return (ret);
 }
 
-int	main2(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_map	*map;
 
 	map = ft_map(ac, av);
 	if (map == 0)
-		print_fd(1, "Somewhere wrong\n");
-	else
-		print_fd(2, "Code for this case good!\n");
-	free_t_map(map);
+		return (1);
 	return (0);
 }
-
-int	main(int ac, char **av)
-{
-	main2(ac, av);
-	// system("leaks parsing");
-}
-// printf("%s\n", (map->no));
-			// printf("%s\n", (map->so));
-			// printf("%s\n", (map->ea));
-			// printf("%s\n", (map->we));
-			// printf("%u\n", map->floor);
-			// printf("%u\n", map->ceiling);
-			// printf("-------------------------\n");

@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:41:58 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 12:53:20 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 17:56:30 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,6 @@ int	is_surrounded(char **map, t_map *ret)
 	while (1)
 	{
 		check = loop(map, &po, 0, 0);
-		// int	i = 0;
-	// while(map[i])
-		// printf("%s\n", map[i++]);
 		if (check == -1)
 			return (0);
 		if (check == 0)

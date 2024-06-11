@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:32:33 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 13:25:32 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 18:01:05 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,8 @@ int	ft_convert_to_color(char *line_rest, unsigned int *set)
 		|| !ft_find_nbr(line_rest, &i, &nbr3))
 		return (0);
 	while (line_rest[i])
-	{
-		if (line_rest[i] != ' ')
-		{
-			print_fd(2, "Error\nInvalid infos\n");
-			return (0);
-		}
-		i++;
-	}
+		if (line_rest[i++] != ' ')
+			return (print_fd(2, "Error\nInvalid infos\n"), 0);
 	*set = nbr1 << 24 | nbr2 << 16 | nbr3 << 8 | 255;
 	return (1);
 }
@@ -85,10 +79,9 @@ int	fill_i_3(t_map *ret, int nbr, char *line_rest, int *color_change)
 	while (line_rest[i] == ' ')
 		i++;
 	color_change += nbr;
+	set = &(ret->ceiling);
 	if (nbr == 1)
 		set = &(ret->floor);
-	else
-		set = &(ret->ceiling);
 	if (ft_convert_to_color(line_rest + i, set) == 0)
 		return (0);
 	return (1);
@@ -104,7 +97,6 @@ int	fill_i_2(char **to_set, char *line_rest)
 	if (*to_set || !line_rest[i])
 		return (print_fd(2, "Error\nInvalid infos2\n"), 0);
 	*to_set = ft_trim_whitespace(line_rest + i);
-	// printf("%s\n", *to_set);
 	if (*to_set == 0)
 		return (0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:12:23 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 13:28:53 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 17:59:22 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,6 @@ int	fill_i(t_map *ret, char *line, int *color_change)
 	return (print_fd(2, "Error\nInvalid infors1\n"), 0);
 }
 
-//color_change
-//0 -> notyet
-//1 -> floor changed
-//2 -> ceiling changed
-//3 -> floor && ceiling changed
-////must free ret in this func, not free non_map
 t_map	*ft_break_non_map(t_map *ret, char **non_map)
 {
 	int	i;
@@ -128,11 +122,6 @@ t_map	*break_non_map(char **file_content, int *i)
 	non_map = before_map_good(file_content, i, 0);
 	if (non_map == NULL)
 		return (NULL);
-// printf("\nMeaningful lines before map\n");
-// int j = 0;
-// while(non_map[j])
-// 	printf("%s\n", non_map[j++]);
-// printf("\nTo have all meaningful lines, checked %d lines\n", *i + 1);
 	ret = (t_map *)malloc(1 * sizeof(t_map));
 	if (ret == NULL)
 		return (perror("Malloc"), free(non_map), NULL);
