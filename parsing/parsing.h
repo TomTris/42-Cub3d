@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 12:56:00 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 18:23:17 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_map
 {
@@ -27,6 +27,10 @@ typedef struct s_map
 	unsigned int		floor;
 	unsigned int		ceiling;
 }	t_map;
+
+//parsing.c
+t_map		*ft_map(int ac, char **av);
+
 //ft_file_create
 char		**ft_file_create(int ac, char **av);
 char		**ft_file_create2(char **ret, int fd);

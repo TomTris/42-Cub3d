@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 18:14:29 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:25:40 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include "MLX42/include/MLX42/MLX42.h"
+# include "parsing/parsing.h"
 
 typedef struct s_ray
 {
@@ -67,6 +68,10 @@ typedef struct s_data
 	uint32_t	ceiling;
 	uint32_t	floor;
 	char		**map;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
 	int			map_width;
 	int			map_height;
 	mlx_image_t	*minimap;
