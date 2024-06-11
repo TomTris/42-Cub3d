@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/09 11:58:53 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/10 17:02:04 by obrittne         ###   ########.fr       */
+/*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
+/*   Updated: 2024/06/10 21:07:14 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "../cube3d.h"
 
-int	main(void)
-{
-	t_data	data;
+// void	draw_a_ray(t_data *data, double angle)
+// {
+// 	int	x;
+// 	int	y;
 
-	display(&data);
-	return (EXIT_SUCCESS);
-}
+// 	get_cords(data, angle, &x, &y);
+// }
