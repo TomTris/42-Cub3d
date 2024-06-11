@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:02:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 20:57:00 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/10 21:27:47 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_fill_map(char **ret, int i, char **file_content)
 //0 or ' ' -> 0
 // nichts -> 2.
 // 2 - should not touched.
-char	**map_gen(char **file_content, int i)
+char	**map_gen(char **file_content, int i, t_map *ret)
 {
 	int		i2;
 	int		len_est;
@@ -85,7 +85,7 @@ char	**map_gen(char **file_content, int i)
 	if (map == 0)
 		return (NULL);
 	ft_fill_map(map, i2, file_content);
-	if (!is_surrounded(map))
+	if (!is_surrounded(map, ret))
 		return (free_split(map), NULL);
 	return (map);
 }

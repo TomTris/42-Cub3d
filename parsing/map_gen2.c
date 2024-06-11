@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:41:58 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 17:37:16 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 12:53:20 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	loop(char **map, t_po *po, int i, int j)
 	while (i >= 0 && map[i + 1] != NULL)
 	{
 		j = 0;
-		while (map[i][j + 1])
+		while (map[i][j])
 		{
 			if (map[i][j] == map[po->x][po->y]
 				|| map[i][j] == '3')
@@ -104,16 +104,21 @@ int	loop(char **map, t_po *po, int i, int j)
 	return (changed);
 }
 
-int	is_surrounded(char **map)
+int	is_surrounded(char **map, t_map *ret)
 {
 	t_po	po;
 	int		check;
 
 	if (player_find(&po, map) == 0)
 		return (0);
+	ret->x = ((double) po.x) + 0.5;
+	ret->y = ((double) po.y) + 0.5;
 	while (1)
 	{
 		check = loop(map, &po, 0, 0);
+		// int	i = 0;
+	// while(map[i])
+		// printf("%s\n", map[i++]);
 		if (check == -1)
 			return (0);
 		if (check == 0)

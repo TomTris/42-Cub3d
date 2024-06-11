@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:32:33 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 13:37:22 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 13:25:32 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	fill_i_2(char **to_set, char *line_rest)
 	if (*to_set || !line_rest[i])
 		return (print_fd(2, "Error\nInvalid infos2\n"), 0);
 	*to_set = ft_trim_whitespace(line_rest + i);
+	// printf("%s\n", *to_set);
 	if (*to_set == 0)
 		return (0);
 	return (1);
