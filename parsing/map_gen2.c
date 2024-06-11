@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:41:58 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 17:56:30 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 19:42:33 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,31 @@ int	check_n_change(char **map, int i, int j)
 	return (ret);
 }
 
-int	loop(char **map, t_po *po, int i, int j)
+int	loop(char **map, int i, int j)
 {
 	int	changed;
+	int	changed2;
 
 	changed = 0;
+	changed2 = 0;
 	while (i >= 0 && map[i + 1] != NULL)
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == map[po->x][po->y]
-				|| map[i][j] == '3')
+			if (map[i][j] == '3')
 			{
 				changed = check_n_change(map, i, j);
 				if (changed == -1)
 					return (-1);
+				if (changed2 == 0 && changed == 1)
+					changed2 = 1;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (changed);
+	return (changed2);
 }
 
 int	is_surrounded(char **map, t_map *ret)
@@ -113,9 +116,17 @@ int	is_surrounded(char **map, t_map *ret)
 		return (0);
 	ret->x = ((double) po.x) + 0.5;
 	ret->y = ((double) po.y) + 0.5;
+	ret->dire = 3;
+	if (map[po.x][po.y] == 'E')
+		ret->dire = 0;
+	if (map[po.x][po.y] == 'N')
+		ret->dire = 1;
+	if (map[po.x][po.y] == 'W')
+		ret->dire = 2;
+	map[po.x][po.y] = '3';
 	while (1)
 	{
-		check = loop(map, &po, 0, 0);
+		check = loop(map, 0, 0);
 		if (check == -1)
 			return (0);
 		if (check == 0)
