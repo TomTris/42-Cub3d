@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 18:25:40 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:38:12 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,8 @@ typedef struct s_ray
 	int		map_cord_y;
 	int		start_pos_x;
 	int		start_pos_y;
-	double	t_min_x;
-	double	t_min_y;
-	double	t_max_x;
-	double	t_max_y;
-	double	t_min;
-	double	t_max;
+	int		pos_x;
+	int		pos_y;
 }	t_ray;
 
 typedef struct s_mini
@@ -72,8 +68,8 @@ typedef struct s_data
 	char		*so;
 	char		*we;
 	char		*ea;
-	int			map_width;
 	int			map_height;
+	int			map_width;
 	mlx_image_t	*minimap;
 }	t_data;
 
@@ -95,6 +91,7 @@ void	move_up(t_data *data);
 void	move_left(t_data *data);
 void	draw_player(t_data *data);
 void	get_cords(t_data *data, double angle, double *x, double *y);
+void	DDA(t_data *data, t_ray *ray);
+void	transform_cordinates(t_data *data, t_ray *ray);
 void	draw_rays(t_data *data);
-
 #endif

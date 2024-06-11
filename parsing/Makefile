@@ -1,6 +1,6 @@
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
-NAME = parsing
+CFLAGS = -Wall -Werror -Wextra
+NAME = parsing.a
 LIBFT_DIR = libft
 LIBFT_A = libft/libft.a
 
@@ -20,13 +20,17 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	cc -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT_A)
+	ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir obj
+
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean -C $(LIBFT_DIR)
