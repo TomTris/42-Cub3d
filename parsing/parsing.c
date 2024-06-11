@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 20:57:46 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 13:31:09 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ t_map	*ft_map(int ac, char **av)
 	t_map		*ret;
 	int			i;
 
-	file_content = ft_file_create(ac, av, av[1]);
+	file_content = ft_file_create(ac, av);
 	if (file_content == 0)
 		return (NULL);
 	i = 0;
 	ret = break_non_map(file_content, &i);
 	if (ret == 0)
 		return (NULL);
-	ret->map = map_gen(file_content, i);
+	ret->map = map_gen(file_content, i, ret);
 	free_split(file_content);
 	if (ret->map == 0)
 		return (free_t_map(ret), NULL);
@@ -53,3 +53,10 @@ int	main(int ac, char **av)
 	main2(ac, av);
 	// system("leaks parsing");
 }
+// printf("%s\n", (map->no));
+			// printf("%s\n", (map->so));
+			// printf("%s\n", (map->ea));
+			// printf("%s\n", (map->we));
+			// printf("%u\n", map->floor);
+			// printf("%u\n", map->ceiling);
+			// printf("-------------------------\n");

@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/10 16:23:06 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/11 12:56:00 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 typedef struct s_map
 {
+	double				x;
+	double				y;
 	char				**map;
 	char				*no;
 	char				*so;
@@ -25,9 +27,8 @@ typedef struct s_map
 	unsigned int		floor;
 	unsigned int		ceiling;
 }	t_map;
-
 //ft_file_create
-char		**ft_file_create(int ac, char **av, char *file_name);
+char		**ft_file_create(int ac, char **av);
 char		**ft_file_create2(char **ret, int fd);
 char		**ft_file_create3(char **ret);
 int			ft_check_args(int ac, char **av);
@@ -55,8 +56,8 @@ void		free_t_map(t_map *a);
 int			ft_is_part_of_map(char *line);
 
 //map_gen.c
-char		**map_gen(char **file_content, int i);
+char		**map_gen(char **file_content, int i, t_map *ret);
 //map_gen2.c
-int			is_surrounded(char **map);
+int			is_surrounded(char **map, t_map *ret);
 
 #endif
