@@ -14,7 +14,7 @@ OBJS = $(CFILES:.c=.o)
 all:  $(NAME)
 	
 $(NAME): $(FT_LIBS) $(OBJS) 
-# make -C parsing
+	make -C parsing
 	$(CC)  $(CFLAGS) $(OBJS) parsing/parsing.a parsing/libft/libft.a $(FT_LIBS) -o $(NAME) -ldl -lglfw -lm -g
 	@echo "\033[34m'$(NAME)'\033[0m is ready to execute!"
 

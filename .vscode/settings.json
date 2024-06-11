@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cube3d.h": "c",
-        "__node_handle": "c"
+        "__node_handle": "c",
+        "libft.h": "c"
     }
 }
