@@ -2,7 +2,7 @@
 
 #include "../cube3d.h"
 
-void	draw_helper(t_data *data)
+void	draw_floor_ceiling(t_data *data)
 {
 	int	swapper;
 	int	i;
@@ -11,7 +11,6 @@ void	draw_helper(t_data *data)
 	i = 0;
 	swapper = data->image->height / 2 + data->player->angle_turn_vertical / \
 	data->player->angle_view * data->image->height / 2;
-	dprintf(1, "%i %f\n", swapper, data->player->angle_turn_vertical);
 	while (i < (int)data->image->height)
 	{
 		e = 0;
@@ -27,22 +26,13 @@ void	draw_helper(t_data *data)
 	}
 }
 
-void	draw_floor_ceiling(t_data *data)
-{
-	t_player	*player;
-
-	player = data->player;
-
-		draw_helper(data);
-}
-
 void	test(void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
-	draw_floor_ceiling(data);
-
+	// draw_floor_ceiling(data);
+	draw_mini_map(data);
 	// mlx_close_window(data->mlx);
 }
 
@@ -53,27 +43,32 @@ void	init_data(t_data *data)
 		exit(EXIT_FAILURE);
 	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->image)
-	{
-		mlx_close_window(data->mlx);
-		exit(EXIT_FAILURE);
-	}
+		return (mlx_close_window(data->mlx), exit(EXIT_FAILURE));
+	data->minimap = mlx_new_image(data->mlx, 288, 288);
+	if (!data->minimap)
+		return (mlx_delete_image(data->mlx, data->image), \
+		mlx_close_window(data->mlx), exit(EXIT_FAILURE));
+	if (mlx_image_to_window(data->mlx, data->minimap, 0, \
+	data->image->height - data->minimap->height))
+		return (mlx_delete_image(data->mlx, data->image), \
+		mlx_delete_image(data->mlx, data->minimap), \
+		mlx_close_window(data->mlx), exit(EXIT_FAILURE));
 	if (mlx_image_to_window(data->mlx, data->image, 0, 0) == -1)
-	{
-		mlx_close_window(data->mlx);
-		exit(EXIT_FAILURE);
-	}
+		return (mlx_delete_image(data->mlx, data->image), \
+		mlx_delete_image(data->mlx, data->minimap), \
+		mlx_close_window(data->mlx), exit(EXIT_FAILURE));
 }
 
 void	init_player(t_data *data, t_player *player)
 {
-	player->x = 0.0;
-	player->y = 0.0;
-	player->z = 0.0;
+	player->x = 2.0;
+	player->y = 2.0;
 	player->angle_view = 30.0;
-	player->angle_turn_horizontal = 0.0;
+	player->angle_turn_horizontal = 90.0;
 	player->angle_turn_vertical = 0.0;
-	data->floor = 225 << 24 | 30 << 16 | 0 << 8 | 255;
-	// data->floor = 255 << 8 | 255;
+	// data->floor = 225 << 24 | 30 << 16 | 0 << 8 | 255;
+	player->distance = data->image->width / 2 / tan(player->angle_view / 180.0 * M_PI);
+	data->floor = 255 << 8 | 255;
 	data->ceiling = 255 << 16 | 255;
 	data->player = player;
 }
@@ -81,11 +76,19 @@ void	init_player(t_data *data, t_player *player)
 int	display(t_data *data)
 {
 	t_player	player;
-
+	char		*map[10];
+	map[0] = "1111111111";
+	map[1] = "1000000001";
+	map[2] = "1000001001";
+	map[3] = "1000001001";
+	map[4] = "1111111111";
+	map[5] = NULL;
+	data->map = map;
 	init_data(data);
 	init_player(data, &player);
 	mlx_loop_hook(data->mlx, test, data);
 	mlx_loop_hook(data->mlx, move, data);
+	mlx_key_hook(data->mlx, exiting, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	return (1);

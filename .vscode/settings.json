@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "cube3d.h": "c",
+        "__node_handle": "c"
+    }
+}
