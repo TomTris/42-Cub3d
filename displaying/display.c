@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 17:34:50 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:59:54 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,7 @@ void	init_data(t_data *data)
 
 void	init_player(t_data *data, t_player *player)
 {
-	player->x = 2.0;
-	player->y = 2.0;
 	player->angle_view = 30.0;
-	player->angle_turn_horizontal = M_PI / 3 * 2;
-	player->angle_turn_vertical = 0.0;
 	// data->floor = 225 << 24 | 30 << 16 | 0 << 8 | 255;
 	player->distance = data->image->width / 2 / tan(player->angle_view / 180.0 * M_PI);
 	data->floor = 255 << 8 | 255;
