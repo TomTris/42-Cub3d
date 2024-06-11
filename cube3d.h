@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/10 18:39:58 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 13:47:24 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include "MLX42/include/MLX42/MLX42.h"
+
+typedef struct s_ray
+{
+	double	x;
+	double	y;
+	int		map_cord_x;
+	int		map_cord_y;
+	int		start_pos_x;
+	int		start_pos_y;
+	double	t_min_x;
+	double	t_min_y;
+	double	t_max_x;
+	double	t_max_y;
+	double	t_min;
+	double	t_max;
+}	t_ray;
 
 typedef struct s_mini
 {
