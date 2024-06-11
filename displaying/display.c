@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
+/*   Updated: 2024/06/11 17:34:50 by obrittne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../cube3d.h"
 
@@ -64,7 +74,7 @@ void	init_player(t_data *data, t_player *player)
 	player->x = 2.0;
 	player->y = 2.0;
 	player->angle_view = 30.0;
-	player->angle_turn_horizontal = 90.0;
+	player->angle_turn_horizontal = M_PI / 3 * 2;
 	player->angle_turn_vertical = 0.0;
 	// data->floor = 225 << 24 | 30 << 16 | 0 << 8 | 255;
 	player->distance = data->image->width / 2 / tan(player->angle_view / 180.0 * M_PI);
@@ -83,6 +93,8 @@ int	display(t_data *data)
 	map[3] = "1000001001";
 	map[4] = "1111111111";
 	map[5] = NULL;
+	data->map_height = 5;
+	data->map_width = 10;
 	data->map = map;
 	init_data(data);
 	init_player(data, &player);

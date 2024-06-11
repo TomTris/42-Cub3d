@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:28:20 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/10 17:51:16 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:17:07 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,5 @@ void	draw_mini_map(t_data *data)
 		minimap.x_player -= 9;
 	}
 	draw_player(data);
+	draw_rays(data);
 }

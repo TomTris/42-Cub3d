@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:36:45 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 12:58:24 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:53:34 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	get_horizontal(t_data *data, double angle, double *x, double *y)
 	double	t_y;
 
 	m = fabs(tan(angle));
-	if (angle < M_PI / 2 && angle > M_PI * 3 / 2)
+	if (angle < M_PI / 2 || angle > M_PI * 3 / 2)
 		factor_x = -1.0;
 	else
 		factor_x = 1.0;
@@ -68,8 +68,15 @@ void	get_horizontal(t_data *data, double angle, double *x, double *y)
 		factor_y = 1.0;
 	t_x = data->player->x;
 	t_y = data->player->y;
-	while (data->map[(int)t_y][(int)t_x])
+	t_x += (m * (t_y - (double)((int)t_y)) * factor_x);
+	t_y = (double)((int)t_y);
+	while (t_y >= 0.0 && data->map[(int)t_y] && data->map[(int)t_y][(int)t_x] != '1')
 	{
+		if (!data->map[(int)t_y][(int)t_x])
+		{
+			factor_y = -1;
+			break ;
+		}
 		t_x += (m * factor_x);
 		t_y += (factor_y * 1.0);
 	}
@@ -79,14 +86,60 @@ void	get_horizontal(t_data *data, double angle, double *x, double *y)
 	*y = t_y;
 }
 
+void	get_vertical(t_data *data, double angle, double *x, double *y)
+{
+	double	m;
+	double	factor_x;
+	double	factor_y;
+	double	t_x;
+	double	t_y;
+
+	m = fabs(tan(angle));
+	if (angle < M_PI / 2 || angle > M_PI * 3 / 2)
+		factor_x = -1.0;
+	else
+		factor_x = 1.0;
+	if (angle < M_PI)
+		factor_y = -1.0;
+	else
+		factor_y = 1.0;
+	t_x = data->player->x;
+	t_y = data->player->y;
+	t_x = (double)((int)t_x);
+	t_y += (m * (t_x - (double)((int)t_x)) * factor_y);
+	while (t_y >= 0.0 && (int)t_y < data->map_height && data->map[(int)t_y]&& data->map[(int)t_y][(int)t_x] != '1')
+	{
+		if (!data->map[(int)t_y][(int)t_x])
+		{
+			factor_x = -1;
+			break ;
+		}
+		t_x += (1.0 * factor_x);
+		t_y += (factor_y * m);
+	}
+	if (factor_x == -1.0)
+		t_x += 1.0;
+	dprintf(1, "%f %f %f %f %f %f %f %f\n", *x, *y, t_x, t_y, data->player->x, data->player->y, sqrt(pow(data->player->x - *x, 2.0) + pow(data->player->y - *y, 2.0)),
+	sqrt(pow(data->player->x - t_x, 2.0) + pow(data->player->y - t_y, 2.0)));
+	if (sqrt(pow(data->player->x - *x, 2.0) + pow(data->player->y - *y, 2.0)) > \
+	sqrt(pow(data->player->x - t_x, 2.0) + pow(data->player->y - t_y, 2.0)))
+	{
+		printf("yes\n");
+		*x = t_x;
+		*y = t_y;
+	}
+}
+
 void	get_normal(t_data *data, double angle, double *x, double *y)
 {
 	get_horizontal(data, angle, x, y);
+	get_vertical(data, angle, x, y);
+	dprintf(1, "%f %f\n", *x, *y);
 }
 
 void	get_cords(t_data *data, double angle, double *x, double	*y)
 {
-	if (angle == 0)
+	if (angle == 0.0)
 		get_angle_0_180(data, x, y, 0);
 	else if (angle == M_PI)
 		get_angle_0_180(data, x, y, 1);
