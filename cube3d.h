@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 13:47:24 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:14:29 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_data
 	uint32_t	ceiling;
 	uint32_t	floor;
 	char		**map;
+	int			map_width;
+	int			map_height;
 	mlx_image_t	*minimap;
 }	t_data;
 
@@ -87,6 +89,7 @@ void	move_down(t_data *data);
 void	move_up(t_data *data);
 void	move_left(t_data *data);
 void	draw_player(t_data *data);
-void	get_cords(t_data *data, double angle, int *x, int *y);
+void	get_cords(t_data *data, double angle, double *x, double *y);
+void	draw_rays(t_data *data);
 
 #endif
