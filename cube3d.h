@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 18:38:12 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:01:12 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,6 @@ void	get_cords(t_data *data, double angle, double *x, double *y);
 void	DDA(t_data *data, t_ray *ray);
 void	transform_cordinates(t_data *data, t_ray *ray);
 void	draw_rays(t_data *data);
+int		len_2d_array(char **array);
+int		ft_str_len(char *str);
 #endif

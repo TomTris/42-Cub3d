@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:36:45 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 17:53:34 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:07:42 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	get_vertical(t_data *data, double angle, double *x, double *y)
 
 void	get_normal(t_data *data, double angle, double *x, double *y)
 {
+	printf("%f\n", angle);
 	get_horizontal(data, angle, x, y);
 	get_vertical(data, angle, x, y);
 	dprintf(1, "%f %f\n", *x, *y);
