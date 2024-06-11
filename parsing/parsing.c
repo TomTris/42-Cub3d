@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 18:22:03 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:32:57 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	ft_1_0_map(char **map)
+void	ft_1_0_map(char **map, int *dire)
 {
 	int		i;
 	int		j;
@@ -26,7 +26,16 @@ void	ft_1_0_map(char **map)
 		{
 			a = map[i][j];
 			if (a != '1')
+			{
+				*dire = 0;
+				if (a == 'N')
+					*dire = 1;
+				if (a == 'W')
+					*dire = 2;
+				if (a == 'S')
+					*dire = 3;
 				map[i][j] = '0';
+			}
 		}
 	}
 }
@@ -51,7 +60,7 @@ t_map	*ft_map(int ac, char **av)
 	free_split(file_content);
 	if (ret->map == 0)
 		return (free_t_map(ret), NULL);
-	ft_1_0_map(ret->map);
+	ft_1_0_map(ret->map, &(ret->dire));
 	return (ret);
 }
 
