@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/12 18:58:57 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/12 19:11:55 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@ void	ft_1_0_map(char **map)
 	}
 }
 
+void	ft_N(char **map, t_map *ret)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (map[++x])
+	{
+		y = -1;
+		while (map[x][++y])
+		{
+			if (map[x][y] == 'N')
+			{
+				ret->x = ((double) x) + 0.5;
+				ret->y = ((double) y) + 0.5;
+				map[x][y] = '0';
+				return ;
+			}
+		}
+	}
+	print_fd(2, "sth wrong\n");
+}
+
 //non_map contains 8 meaningfull lines with meaning full value, check only
 //before line ft_is_part_of_map
 //un_non_map - else
@@ -56,10 +79,12 @@ t_map	*ft_map(int ac, char **av)
 	if (ret->map == 0)
 		return (free_t_map(ret), NULL);
 	ft_1_0_map(ret->map);
+	ret->map[(int)ret->x][(int)ret->y] = 'N';
 	ft_map_cut_height(ret->map, 0, -1, 1);
 	ft_map_cut_width1(ret->map);
 	if (ft_map_cut_width2(ret->map, 0, 0, 0) == 0)
 		return (free_t_map(ret), NULL);
+	ft_N(ret->map, ret);
 	return (ret);
 }
 
