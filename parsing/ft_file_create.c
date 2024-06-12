@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:00:08 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 18:03:06 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/12 18:59:09 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_check_args(int ac, char **av)
 
 	if (ac != 2)
 		return (print_fd(2,
-			"Error\nFile '.cub' is also needed!\n"), 0);
+				"Error\nFile '.cub' is also needed!\n"), 0);
 	len = ft_strlen(av[1]);
 	if (len < 4 || av[1][len - 1] != 'b' || av[1][len -2] != 'u'
 		|| av[1][len - 3] != 'c' || av[1][len - 4] != '.')

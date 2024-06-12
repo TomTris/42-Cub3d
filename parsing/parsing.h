@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 19:23:29 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/12 18:57:06 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,10 @@ int			ft_is_part_of_map(char *line);
 char		**map_gen(char **file_content, int i, t_map *ret);
 //map_gen2.c
 int			is_surrounded(char **map, t_map *ret);
+
+//map_cut.c
+void		ft_map_cut_width1(char **map);
+int			ft_map_cut_width2(char **map, int height, int len, int i);
+void		ft_map_cut_height(char **map, int height, int i, int check);
 
 #endif

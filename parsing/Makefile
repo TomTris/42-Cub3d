@@ -11,6 +11,7 @@ SRC		= 	parsing.c\
 			ft_file_create.c\
 			map_gen.c\
 			map_gen2.c\
+			map_cut.c\
 			other.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -27,7 +28,6 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	mkdir obj
-
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
