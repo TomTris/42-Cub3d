@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 11:58:53 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/12 14:29:11 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:29:57 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_cpy_map_to_data(t_data *data, t_player *player, t_map *parsing)
 	data->we = parsing->we;
 	data->ea = parsing->ea;
 	data->floor = parsing->floor;
-	data->map_height = ft_str_len(data->map[0]);
-	data->map_width = len_2d_array(data->map);
+	data->map_height = len_2d_array(data->map);
+	data->map_width = ft_str_len(data->map[0]);
 	data->player->angle_turn_horizontal = 3.0 * M_PI / 2.0;
 	if (parsing->dire == 0)
 		data->player->angle_turn_horizontal = 0.0;

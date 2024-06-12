@@ -6,11 +6,12 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 14:26:22 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:47:51 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+
 
 void	DDA(t_data *data, t_ray *ray)
 {
@@ -34,7 +35,7 @@ void	DDA(t_data *data, t_ray *ray)
     double X = X0; 
     double Y = Y0; 
     for (int i = 0; i <= steps; i++) { 
-        mlx_put_pixel(data->minimap, (uint32_t)lround(X), (uint32_t)lround(Y), 255 << 16 | 255);
+        mlx_put_pixel(data->minimap, (uint32_t)lround(X) > 287 ? 287: (uint32_t)lround(X), (uint32_t)lround(Y) > 287 ? 287: (uint32_t)lround(Y), 255 << 16 | 255);
         X += Xinc; // increment in x at each step 
         Y += Yinc; // increment in y at each step 
                     // generation step by step 

@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/12 15:27:17 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:08:55 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ typedef struct s_ray
 	int		start_pos_y;
 	int		pos_x;
 	int		pos_y;
+	double	t_y;
+	double	t_x;
+	double	t_yv;
+	double	t_xv;
+	double	xv;
+	double	yv;
+	double	update_x;
+	double	update_y;
+	int		should;
+	double	update_xv;
+	double	update_yv;
+	int		shouldv;
 }	t_ray;
 
 typedef struct s_mini
