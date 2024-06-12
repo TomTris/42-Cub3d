@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 19:59:54 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:17:38 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,31 +69,11 @@ void	init_data(t_data *data)
 		mlx_close_window(data->mlx), exit(EXIT_FAILURE));
 }
 
-void	init_player(t_data *data, t_player *player)
-{
-	player->angle_view = 30.0;
-	// data->floor = 225 << 24 | 30 << 16 | 0 << 8 | 255;
-	player->distance = data->image->width / 2 / tan(player->angle_view / 180.0 * M_PI);
-	data->floor = 255 << 8 | 255;
-	data->ceiling = 255 << 16 | 255;
-	data->player = player;
-}
-
 int	display(t_data *data)
 {
-	t_player	player;
-	char		*map[10];
-	map[0] = "1111111111";
-	map[1] = "1000000001";
-	map[2] = "1000001001";
-	map[3] = "1000001001";
-	map[4] = "1111111111";
-	map[5] = NULL;
-	data->map_height = 5;
-	data->map_width = 10;
-	data->map = map;
+
 	init_data(data);
-	init_player(data, &player);
+	printf("%f\n", data->player->angle_turn_horizontal);
 	mlx_loop_hook(data->mlx, test, data);
 	mlx_loop_hook(data->mlx, move, data);
 	mlx_key_hook(data->mlx, exiting, data);

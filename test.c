@@ -51,3 +51,13 @@ int main() {
 
     return 0;
 }
+
+// #include <string.h>
+
+// int main()
+// {
+//     char *old = "111111111111000";
+//     printf("%lu\n", strlen(old));
+//     printf("%lu\n", sizeof(old));
+//     write(2, "123132", sizeof("123132"))
+// }

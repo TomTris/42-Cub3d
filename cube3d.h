@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 20:01:12 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:27:17 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	move_down(t_data *data);
 void	move_up(t_data *data);
 void	move_left(t_data *data);
 void	draw_player(t_data *data);
-void	get_cords(t_data *data, double angle, double *x, double *y);
+void	get_cords(t_data *data, double angle, t_ray *ray);
 void	DDA(t_data *data, t_ray *ray);
 void	transform_cordinates(t_data *data, t_ray *ray);
 void	draw_rays(t_data *data);
