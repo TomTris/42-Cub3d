@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 19:43:34 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/12 18:58:57 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ t_map	*ft_map(int ac, char **av)
 	if (ret->map == 0)
 		return (free_t_map(ret), NULL);
 	ft_1_0_map(ret->map);
+	ft_map_cut_height(ret->map, 0, -1, 1);
+	ft_map_cut_width1(ret->map);
+	if (ft_map_cut_width2(ret->map, 0, 0, 0) == 0)
+		return (free_t_map(ret), NULL);
 	return (ret);
 }
 
@@ -75,5 +79,11 @@ t_map	*ft_map(int ac, char **av)
 // 	printf("%s\n", map->ea);
 // 	printf("%u\n", map->floor);
 // 	printf("%u\n", map->ceiling);
+
+// 	int	i =0;
+// 	while (map->map[i])
+// 	{
+// 		printf("%s\n", map->map[i++]);
+// 	}
 // 	return (0);
 // }
