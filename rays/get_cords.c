@@ -6,13 +6,13 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:36:45 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 20:07:42 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:05:02 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-void	get_angle_0_180(t_data *data, double *x, double *y, int i)
+void	get_angle_0_180(t_data *data, t_ray *ray, int i)
 {
 	int	addition;
 	int	player_x;
@@ -26,11 +26,11 @@ void	get_angle_0_180(t_data *data, double *x, double *y, int i)
 		player_x = player_x + addition;
 	if (addition == -1)
 		player_x += 1;
-	*x = (double)player_x;
-	*y = data->player->y;
+	ray->x = (double)player_x;
+	ray->y = data->player->y;
 }
 
-void	get_angle_90_270(t_data *data, double *x, double *y, int i)
+void	get_angle_90_270(t_data *data, t_ray *ray, int i)
 {
 	int	addition;
 	int	player_y;
@@ -44,110 +44,84 @@ void	get_angle_90_270(t_data *data, double *x, double *y, int i)
 		player_y = player_y + addition;
 	if (addition == -1)
 		player_y += 1;
-	*x = data->player->x;
-	*y = (double)player_y;
+	ray->x = data->player->x;
+	ray->y = (double)player_y;
 }
 
-void	get_horizontal(t_data *data, double angle, double *x, double *y)
+void	get_horizontal(t_data *data, double angle, t_ray *ray)
 {
-	double	m;
-	double	factor_x;
-	double	factor_y;
+	double	ta;
+	double	x_factor;
+	double	y_factor;
 	double	t_x;
 	double	t_y;
 
-	m = fabs(tan(angle));
-	if (angle < M_PI / 2 || angle > M_PI * 3 / 2)
-		factor_x = -1.0;
-	else
-		factor_x = 1.0;
-	m = 1 / m;
-	if (angle < M_PI)
-		factor_y = -1.0;
-	else
-		factor_y = 1.0;
-	t_x = data->player->x;
-	t_y = data->player->y;
-	t_x += (m * (t_y - (double)((int)t_y)) * factor_x);
-	t_y = (double)((int)t_y);
-	while (t_y >= 0.0 && data->map[(int)t_y] && data->map[(int)t_y][(int)t_x] != '1')
+	ta = fabs(tan(data->player->angle_turn_horizontal)); 
+	ta = 1.0 / ta;
+	x_factor = 1.0;
+	y_factor = 1.0;
+	if (angle > M_PI / 2.0 && angle < 3.0 * M_PI / 2.0)
+		x_factor = -1.0;
+	if (angle > M_PI)
 	{
-		if (!data->map[(int)t_y][(int)t_x])
-		{
-			factor_y = -1;
-			break ;
-		}
-		t_x += (m * factor_x);
-		t_y += (factor_y * 1.0);
+		y_factor = 1.0;
+		t_y = (double)((int)data->player->y + 1);
+		t_x = data->player->x + fabs(((double)(t_y - data->player->y))) * ta * x_factor;
 	}
-	if (factor_y == -1.0)
+	else
+	{
+		y_factor = -1.0;
+		t_y = (double)((int)data->player->y);
+		t_x = data->player->x + fabs(((double)(t_y - data->player->y))) * ta * x_factor;
+	}
+	dprintf(1, "angle {%f}  stept_Y {%f}  step_x{%f} \n\n\n", angle * 180.0 / M_PI, y_factor, ta * x_factor);
+	if ((int)t_x < 0 || (int)t_x >= data->map_width || data->map[(int)t_y][(int)t_x] == '1')
+	{
+		ray->x = t_x;
+		ray->y = t_y;
+		return ;
+	}
+	while (data->map[(int)t_y][(int)t_x] != '1')
+	{
+		t_y = t_y + y_factor;
+		t_x += ta * x_factor ;
+		if ((int)t_x < 0 || (int)t_x >= data->map_width)
+		{
+			ray->x = t_x;
+			ray->y = t_y;
+			return ;
+		}
+	}
+	if (y_factor == -1.0)
+	{
 		t_y += 1.0;
-	*x = t_x;
-	*y = t_y;
-}
-
-void	get_vertical(t_data *data, double angle, double *x, double *y)
-{
-	double	m;
-	double	factor_x;
-	double	factor_y;
-	double	t_x;
-	double	t_y;
-
-	m = fabs(tan(angle));
-	if (angle < M_PI / 2 || angle > M_PI * 3 / 2)
-		factor_x = -1.0;
-	else
-		factor_x = 1.0;
-	if (angle < M_PI)
-		factor_y = -1.0;
-	else
-		factor_y = 1.0;
-	t_x = data->player->x;
-	t_y = data->player->y;
-	t_x = (double)((int)t_x);
-	t_y += (m * (t_x - (double)((int)t_x)) * factor_y);
-	while (t_y >= 0.0 && (int)t_y < data->map_height && data->map[(int)t_y]&& data->map[(int)t_y][(int)t_x] != '1')
-	{
-		if (!data->map[(int)t_y][(int)t_x])
-		{
-			factor_x = -1;
-			break ;
-		}
-		t_x += (1.0 * factor_x);
-		t_y += (factor_y * m);
+		t_x -= ta * x_factor;
 	}
-	if (factor_x == -1.0)
-		t_x += 1.0;
-	dprintf(1, "%f %f %f %f %f %f %f %f\n", *x, *y, t_x, t_y, data->player->x, data->player->y, sqrt(pow(data->player->x - *x, 2.0) + pow(data->player->y - *y, 2.0)),
-	sqrt(pow(data->player->x - t_x, 2.0) + pow(data->player->y - t_y, 2.0)));
-	if (sqrt(pow(data->player->x - *x, 2.0) + pow(data->player->y - *y, 2.0)) > \
-	sqrt(pow(data->player->x - t_x, 2.0) + pow(data->player->y - t_y, 2.0)))
-	{
-		printf("yes\n");
-		*x = t_x;
-		*y = t_y;
-	}
+	ray->y = t_y;
+	ray->x = t_x;
 }
 
-void	get_normal(t_data *data, double angle, double *x, double *y)
+// void	get_vertical(t_data *data, double angle, double *x, double *y)
+// {
+// }
+
+void	get_normal(t_data *data, double angle, t_ray *ray)
 {
-	printf("%f\n", angle);
-	get_horizontal(data, angle, x, y);
-	get_vertical(data, angle, x, y);
-	dprintf(1, "%f %f\n", *x, *y);
+	get_horizontal(data, angle, ray);
+	// get_vertical(data, angle, x, y);
+
 }
 
-void	get_cords(t_data *data, double angle, double *x, double	*y)
+void	get_cords(t_data *data, double angle, t_ray *ray)
 {
 	if (angle == 0.0)
-		get_angle_0_180(data, x, y, 0);
+		get_angle_0_180(data, ray, 0);
 	else if (angle == M_PI)
-		get_angle_0_180(data, x, y, 1);
-	else if (angle == M_PI / 2)
-		get_angle_90_270(data, x, y, 0);
-	else if (angle == 3 * M_PI / 2)
-		get_angle_90_270(data, x, y, 1);
+		get_angle_0_180(data, ray, 1);
+	else if (angle == M_PI / 2.0)
+		get_angle_90_270(data, ray, 0);
+	else if (angle == 3.0 * M_PI / 2.0)
+		get_angle_90_270(data, ray, 1);
 	else
-		get_normal(data, angle, x, y);
+		get_normal(data, angle, ray);
 }
