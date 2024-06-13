@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:55:08 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/11 19:10:51 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:52:29 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,11 @@ void	change_one_to_zero(t_data *data, char **array)
 		i++;
 	}
 	array[(int)data->player->y][(int)data->player->x] = '0';
+}
+
+int	is_not_walkable(char c)
+{
+	if (c == '1')
+		return (1);
+	return (0);
 }

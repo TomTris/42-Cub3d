@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:36:45 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/12 19:41:49 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:56:25 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_angle_0_180(t_data *data, t_ray *ray, int i)
 		addition = 1;
 	else
 		addition = -1;
-	while (data->map[(int)data->player->y][player_x] != '1')
+	while (!is_not_walkable(data->map[(int)data->player->y][player_x]))
 		player_x = player_x + addition;
 	if (addition == -1)
 		player_x += 1;
@@ -40,7 +40,7 @@ void	get_angle_90_270(t_data *data, t_ray *ray, int i)
 		addition = -1;
 	else
 		addition = 1;
-	while (data->map[player_y][(int)data->player->x] != '1')
+	while (!is_not_walkable(data->map[player_y][(int)data->player->x]))
 		player_y = player_y + addition;
 	if (addition == -1)
 		player_y += 1;
@@ -99,7 +99,6 @@ void	get_vertical(t_data *data, double angle, t_ray *ray)
 	double	x_factor;
 	double	y_factor;
 
-	dprintf(1, "Start\n");
 	ta = fabs(tan(angle)); 
 	x_factor = 1.0;
 	y_factor = 1.0;
@@ -159,7 +158,6 @@ void	get_normal(t_data *data, double angle, t_ray *ray)
 {
 	get_horizontal(data, angle, ray);
 	get_vertical(data, angle, ray);
-	dprintf(1, "END\n");
 	get_best(data, ray);
 }
 
