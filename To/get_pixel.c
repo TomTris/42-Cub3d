@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:35:48 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/13 20:27:58 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 20:51:25 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, 
 {
 	int	hei_highest = texture_hei * rate * (WINDOW_HEIGHT / texture_hei) + WINDOW_HEIGHT / 2;
 	int	height_cnt = WINDOW_HEIGHT;
-	int	a = 0;
+	// int	a = 0;
 
 	while (height_cnt > hei_highest)
 	{
@@ -59,7 +59,7 @@ void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, 
 	hei_highest -= texture_hei * rate / 2;
 	while (height_cnt > hei_highest)
 	{
-		printf("a = {%d}\n", a++);
+		// printf("a = {%d}\n", a++);
 		mlx_put_pixel(image, wid_on_screen, height_cnt, get_pixel(texture, wid_on_texture, height_cnt / rate));
 		height_cnt--;
 	}
