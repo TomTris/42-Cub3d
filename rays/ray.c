@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 20:16:54 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 20:53:36 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@ int	get_wid_on_texture(t_data *data, t_ray *ray)
 	temp = get_texture(data, ray->texture);
 	if (ray->texture == 0)
 	{
-		t = fabs(ray->x - (double)((int)ray->x));
+		t = fabs(ray->y - (double)((int)ray->y));
+		
 	}
 	else if (ray->texture == 1)
 	{
-		t = fabs(ray->y - (double)((int)ray->y));
+		t = fabs(ray->x - (double)((int)ray->x));
 	}
 	else if (ray->texture == 2)
 	{
-		t = fabs(ray->x - (double)((int)ray->x));
+		t = fabs(ray->y - (double)((int)ray->y));
+		
 	}
 	else
 	{
-		t = fabs(ray->y - (double)((int)ray->y));
+		t = fabs(ray->x - (double)((int)ray->x));
 	}
 	return ((int)lround(t * temp->width));
 }
@@ -70,9 +72,9 @@ void	draw_rays(t_data *data, t_ray *ray)
 		M_PI / 3.0 / AMOUNT_OF_RAYS * ((double) i) - (M_PI / 6.0)), &ray[i]);
 		transform_cordinates(data, &ray[i]);
 		DDA(data, &ray[i]);
-
 		temp = get_texture(data, ray->texture);
-		render_height(data->image, temp, temp->height, 1.0 / ray[i].distance, get_wid_on_texture(data, ray), i);
+		// dprintf(1, "%i %i %i \n", i,  get_wid_on_texture(data, &ray[i]), ray[i].texture);
+		render_height(data->image, temp, temp->height, 1.0 / ray[i].distance, get_wid_on_texture(data, &ray[i]), 1024 / 10 * i);
 		i++;
 	}
 }
