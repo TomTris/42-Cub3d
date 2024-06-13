@@ -4,9 +4,19 @@ CC = gcc
 
 FT_LIBS =	MLX42/build/libmlx42.a
 
-CFILES	=	main.c strings_utils/len.c\
-displaying/display.c displaying/move_player.c displaying/test.c displaying/adding_numbers.c displaying/draw_mini_map.c displaying/actual_moving.c \
-rays/ray.c rays/get_cords.c rays/draw_line.c rays/transform_cord_minimap.c
+CFILES	=	main.c\
+			strings_utils/len.c\
+			displaying/display.c\
+			displaying/move_player.c\
+			displaying/test.c\
+			displaying/adding_numbers.c\
+			displaying/draw_mini_map.c\
+			displaying/actual_moving.c\
+			rays/ray.c\
+			rays/get_cords.c\
+			rays/draw_line.c\
+			rays/transform_cord_minimap.c
+
 
 
 OBJS = $(CFILES:.c=.o)
@@ -20,9 +30,9 @@ $(NAME): $(FT_LIBS) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-# $(FT_LIBS): 
-# 	git clone https://github.com/codam-coding-college/MLX42.git
-# 	cd MLX42 && cmake -B build && cmake --build build -j4
+$(FT_LIBS): 
+	git clone https://github.com/codam-coding-college/MLX42.git
+	cd MLX42 && cmake -B build && cmake --build build -j4
 
 
 clean:
