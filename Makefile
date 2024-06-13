@@ -18,7 +18,8 @@ CFILES	=	main.c\
 			rays/draw_line.c\
 			rays/transform_cord_minimap.c\
 			rays/horizonatal.c\
-			rays/vertical.c
+			rays/vertical.c\
+			To/get_pixel.c
 
 
 
