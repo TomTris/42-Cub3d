@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 21:12:46 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:33:22 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_data
 # define MINMOVE 0.03125
 # define MINDISTANCE 0.125
 
-# define AMOUNT_OF_RAYS 100
+# define AMOUNT_OF_RAYS WIDTH
 
 int		display(t_data *data, t_map *parsing);
 void	move(void *param);
