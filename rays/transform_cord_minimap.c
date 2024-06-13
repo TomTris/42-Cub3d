@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:02:33 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/12 14:27:57 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:42:25 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	get_start_pos(t_data *data, t_ray *ray)
 	(double)((int)data->player->y)));
 	ray->start_pos_x = player_x;
 	ray->start_pos_y = player_y;
-	ray->map_cord_x = 128 + lround((ray->x - (double)((int)data->player->x)) * 32.0);
-	ray->map_cord_y = 128 + lround((ray->y - (double)((int)data->player->y)) * 32.0);
+	ray->map_cord_x = 128 + \
+	lround((ray->x - (double)((int)data->player->x)) * 32.0);
+	ray->map_cord_y = 128 + \
+	lround((ray->y - (double)((int)data->player->y)) * 32.0);
 }
 
 void	get_inter_1(t_ray *ray, int dx2, int dy2, double *t)

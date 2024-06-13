@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   freeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 18:52:10 by obrittne         ###   ########.fr       */
+/*   Created: 2024/06/13 16:40:26 by obrittne          #+#    #+#             */
+/*   Updated: 2024/06/13 17:00:35 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-void	draw_rays(t_data *data, t_ray *ray)
+void	freeing_textures(t_data *data)
 {
-	int	i;
+	if (data->ea)
+		mlx_delete_texture(data->ea);
+	if (data->so)
+		mlx_delete_texture(data->so);
+	if (data->no)
+		mlx_delete_texture(data->no);
+	if (data->we)
+		mlx_delete_texture(data->we);
+}
 
-	i = 0;
-	while (i < AMOUNT_OF_RAYS)
-	{
-		get_cords(data, add_angles(data->player->angle_turn_horizontal, \
-		M_PI / 3.0 / AMOUNT_OF_RAYS * ((double) i) - (M_PI / 6.0) ), &ray[i]);
-		transform_cordinates(data, &ray[i]);
-		DDA(data, &ray[i]);
-		i++;
-	}
+void	free_data_pre_init(t_data *data)
+{
+	freeing_textures(data);
+	free_split(data->map);
 }
