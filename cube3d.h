@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 19:37:54 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 20:01:45 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,8 @@ void	get_horizontal(t_data *data, double angle, t_ray *ray);
 void	calculate_distance(t_data *data, t_ray *ray, \
 double *distance1, double *distance2);
 
+
+
+
+void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen);
 #endif
