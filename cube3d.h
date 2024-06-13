@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 20:41:08 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:12:46 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_data
 # define MINMOVE 0.03125
 # define MINDISTANCE 0.125
 
-# define AMOUNT_OF_RAYS 10
+# define AMOUNT_OF_RAYS 100
 
 int		display(t_data *data, t_map *parsing);
 void	move(void *param);
@@ -118,4 +118,5 @@ double *distance1, double *distance2);
 
 
 void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen);
+unsigned int	get_pixel(mlx_texture_t *texture, int wid, int hei);
 #endif
