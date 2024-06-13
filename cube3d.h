@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/12 18:08:55 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:54:23 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,13 @@ void	exiting(mlx_key_data_t keydata, void *param);
 void	display_sphere(t_data *data);
 double	add_angles(double angle1, double angle2);
 void	draw_mini_map(t_data *data);
-void	move_right(t_data *data);
-void	move_down(t_data *data);
-void	move_up(t_data *data);
-void	move_left(t_data *data);
+void	move_in_line(t_data *data, double angle);
 void	draw_player(t_data *data);
 void	get_cords(t_data *data, double angle, t_ray *ray);
 void	DDA(t_data *data, t_ray *ray);
 void	transform_cordinates(t_data *data, t_ray *ray);
 void	draw_rays(t_data *data);
 int		len_2d_array(char **array);
+int		is_not_walkable(char c);
 int		ft_str_len(char *str);
 #endif
