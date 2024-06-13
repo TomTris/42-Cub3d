@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 19:20:21 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 19:37:54 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,9 @@ int		is_not_walkable(char c);
 int		ft_str_len(char *str);
 void	freeing_textures(t_data *data);
 void	free_data_pre_init(t_data *data);
+void	get_vertical(t_data *data, double angle, t_ray *ray);
+void	get_horizontal(t_data *data, double angle, t_ray *ray);
+void	calculate_distance(t_data *data, t_ray *ray, \
+double *distance1, double *distance2);
+
 #endif

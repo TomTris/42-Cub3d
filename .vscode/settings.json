@@ -2,6 +2,7 @@
     "files.associations": {
         "cube3d.h": "c",
         "__node_handle": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "complex": "c"
     }
 }

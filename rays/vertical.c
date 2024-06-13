@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 19:17:27 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 19:24:19 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/13 19:29:47 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_vertical(t_data *data, double angle, t_ray *ray)
 	(int)ray->t_xv < 0 || (int)ray->t_xv >= data->map_width || \
 	is_not_walkable(data->map[(int)ray->t_yv][(int)ray->t_xv]))
 		return ;
-	while (data->map[(int)ray->t_yv][(int)ray->t_xv] != '1')
+	while (!is_not_walkable(data->map[(int)ray->t_yv][(int)ray->t_xv]))
 	{
 		ray->t_yv += ray->ta * ray->y_factor;
 		ray->t_xv = ray->t_xv + ray->x_factor;
