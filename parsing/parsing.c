@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/12 19:11:55 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/13 16:53:02 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+void	free_t_map_0_map(t_map *a)
+{
+	if (a)
+	{
+		free(a->no);
+		free(a->so);
+		free(a->ea);
+		free(a->we);
+	}
+	free(a);
+}
 
 void	ft_1_0_map(char **map)
 {

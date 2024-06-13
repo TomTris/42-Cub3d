@@ -6,6 +6,7 @@ FT_LIBS =	MLX42/build/libmlx42.a
 
 CFILES	=	main.c\
 			strings_utils/len.c\
+			displaying/freeing.c\
 			displaying/display.c\
 			displaying/move_player.c\
 			displaying/test.c\
@@ -15,7 +16,9 @@ CFILES	=	main.c\
 			rays/ray.c\
 			rays/get_cords.c\
 			rays/draw_line.c\
-			rays/transform_cord_minimap.c
+			rays/transform_cord_minimap.c\
+			rays/horizonatal.c\
+			rays/vertical.c
 
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/12 18:57:06 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/13 16:53:18 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int			is_surrounded(char **map, t_map *ret);
 void		ft_map_cut_width1(char **map);
 int			ft_map_cut_width2(char **map, int height, int len, int i);
 void		ft_map_cut_height(char **map, int height, int i, int check);
+void		free_t_map_0_map(t_map *a);
 
 #endif
