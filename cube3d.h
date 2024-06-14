@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 19:25:01 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:28:41 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,16 @@ typedef struct s_data
 	mlx_image_t			*minimap;
 }	t_data;
 
+typedef struct s_render
+{
+	mlx_image_t		*image;
+	mlx_texture_t	*texture;
+	int				texture_hei;
+	double			rate;
+	int				wid_on_texture;
+	int				wid_on_screen;
+}	t_render;
+
 # define WIDTH 1024
 # define HEIGHT 1024
 
@@ -105,41 +115,43 @@ typedef struct s_data
 
 # define AMOUNT_OF_RAYS WIDTH
 
-int		display(t_data *data, t_map *parsing);
-void	move(void *param);
-void	exiting(mlx_key_data_t keydata, void *param);
-void	display_sphere(t_data *data);
-double	add_angles(double angle1, double angle2);
-void	draw_mini_map(t_data *data, t_ray *ray);
-void	move_in_line(t_data *data, double angle, int boost);
-void	draw_player(t_data *data);
-void	get_cords(t_data *data, double angle, t_ray *ray);
-void	dda(t_data *data, t_ray *ray);
-void	transform_cordinates(t_data *data, t_ray *ray);
-void	draw_rays(t_data *data, t_ray *ray);
-int		len_2d_array(char **array);
-int		is_not_walkable(char c);
-int		ft_str_len(char *str);
-void	freeing_textures(t_data *data);
-void	free_data_pre_init(t_data *data);
-void	get_vertical(t_data *data, double angle, t_ray *ray);
-void	get_horizontal(t_data *data, double angle, t_ray *ray);
-void	calculate_distance(t_data *data, t_ray *ray, \
-double *distance1, double *distance2);
-double	get_distance_to_point(t_player *player, double x, double y);
-void	open_close_nearst_door(t_data *data, t_ray *ray);
-double	get_distance_to_point(t_player *player, double x, double y);
-void	delete_weapon_textures(t_data *data);
-void	init_weapon(t_data *data);
-void	display_wapon(t_data *data);
-void	get_closest_door(t_data *data, t_ray *ray, double x, double y);
-void	draw_floor_ceiling(t_data *data);
-void	mouse(void	*param);
+int					display(t_data *data, t_map *parsing);
+void				move(void *param);
+void				exiting(mlx_key_data_t keydata, void *param);
+void				display_sphere(t_data *data);
+double				add_angles(double angle1, double angle2);
+void				draw_mini_map(t_data *data, t_ray *ray);
+void				move_in_line(t_data *data, double angle, int boost);
+void				draw_player(t_data *data);
+void				get_cords(t_data *data, double angle, t_ray *ray);
+void				dda(t_data *data, t_ray *ray);
+void				transform_cordinates(t_data *data, t_ray *ray);
+void				draw_rays(t_data *data, t_ray *ray);
+int					len_2d_array(char **array);
+int					is_not_walkable(char c);
+int					ft_str_len(char *str);
+void				freeing_textures(t_data *data);
+void				free_data_pre_init(t_data *data);
+void				get_vertical(t_data *data, double angle, t_ray *ray);
+void				get_horizontal(t_data *data, double angle, t_ray *ray);
+void				calculate_distance(t_data *data, t_ray *ray, \
+double					*distance1, double *distance2);
+double				get_distance_to_point(t_player *player, double x, double y);
+void				open_close_nearst_door(t_data *data, t_ray *ray);
+double				get_distance_to_point(t_player *player, double x, double y);
+void				delete_weapon_textures(t_data *data);
+void				init_weapon(t_data *data);
+void				display_wapon(t_data *data);
+void				get_closest_door(t_data *data, t_ray *ray,
+						double x, double y);
+void				draw_floor_ceiling(t_data *data);
+void				mouse(void	*param);
 
-char	*str_join(char *str1, char *str2);
-char	*to_string(int c);
-void	handle_door(t_data *data, t_ray *ray);
+char				*str_join(char *str1, char *str2);
+char				*to_string(int c);
+void				handle_door(t_data *data, t_ray *ray);
 
-void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen);
-unsigned int	get_pixel(mlx_texture_t *texture, int wid, int hei);
+void				render_height(t_render *r);
+unsigned int		get_pixel(mlx_texture_t *texture, int wid, int hei);
+
 #endif
