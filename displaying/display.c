@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 18:46:14 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:33:18 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	ft_cpy_map_to_data(t_data *data, t_map *parsing)
 	data->we = mlx_load_png(parsing->we);
 	data->ea = mlx_load_png(parsing->ea);
 	data->no = mlx_load_png(parsing->no);
-	if (!data->so || !data->we || !data->no || !data->we)
+	data->cursor = mlx_load_png("textures/empty.png");
+	if (!data->so || !data->we || !data->no || !data->we || !data->cursor)
 		return (freeing_textures(data), free_t_map(parsing), exit(1));
 	data->map = parsing->map;
 	data->player->x = parsing->y;
@@ -93,12 +94,39 @@ void	init_data(t_data *data)
 		exit(EXIT_FAILURE));
 }
 
+void	mouse(void	*param)
+{
+	static int	first = 1;
+	t_data		*data;
+	int32_t		x;
+	int32_t		y;
+
+	data = (t_data *)param;
+	mlx_set_cursor(data->mlx, data->mlx_cur);
+	if (first)
+	{
+		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+		first = 0;
+	}
+	else
+	{
+		mlx_get_mouse_pos(data->mlx, &x, &y);
+		data->player->angle_turn_horizontal = add_angles(data->player->angle_turn_horizontal, (double)(WIDTH / 2 - x) / 1000.0);
+		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+		mlx_set_cursor(data->mlx, data->mlx_cur);
+	}
+}
+
 int	display(t_data *data, t_map *parsing)
 {
 	ft_cpy_map_to_data(data, parsing);
 	init_data(data);
+	data->mlx_cur = mlx_create_cursor(data->cursor);
+	mlx_set_cursor(data->mlx, data->mlx_cur);
+	mlx_set_mouse_pos(data->mlx, 400, 300);
 	mlx_loop_hook(data->mlx, test, data);
 	mlx_loop_hook(data->mlx, move, data);
+	mlx_loop_hook(data->mlx, mouse, data);
 	mlx_key_hook(data->mlx, exiting, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);

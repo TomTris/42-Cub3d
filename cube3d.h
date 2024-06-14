@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 21:33:22 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:35:11 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,21 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	t_player		*player;
-	mlx_t			*mlx;
-	mlx_image_t		*image;
-	uint32_t		ceiling;
-	uint32_t		floor;
-	char			**map;
-	mlx_texture_t	*no;
-	mlx_texture_t	*so;
-	mlx_texture_t	*we;
-	mlx_texture_t	*ea;
-	int				map_height;
-	int				map_width;
-	mlx_image_t		*minimap;
+	t_player			*player;
+	mlx_t				*mlx;
+	mlx_image_t			*image;
+	uint32_t			ceiling;
+	uint32_t			floor;
+	char				**map;
+	mlx_texture_t		*no;
+	mlx_texture_t		*so;
+	mlx_texture_t		*we;
+	mlx_texture_t		*ea;
+	mlx_texture_t		*cursor;
+	mlx_win_cursor_t	*mlx_cur;
+	int					map_height;
+	int					map_width;
+	mlx_image_t			*minimap;
 }	t_data;
 
 # define WIDTH 1024
@@ -89,6 +91,8 @@ typedef struct s_data
 
 # define MINMOVE 0.03125
 # define MINDISTANCE 0.125
+# define MINIMAP_SQUARE 32
+# define AMOUNT_SQUARES 9
 
 # define AMOUNT_OF_RAYS WIDTH
 
@@ -98,7 +102,7 @@ void	exiting(mlx_key_data_t keydata, void *param);
 void	display_sphere(t_data *data);
 double	add_angles(double angle1, double angle2);
 void	draw_mini_map(t_data *data, t_ray *ray);
-void	move_in_line(t_data *data, double angle);
+void	move_in_line(t_data *data, double angle, int boost);
 void	draw_player(t_data *data);
 void	get_cords(t_data *data, double angle, t_ray *ray);
 void	DDA(t_data *data, t_ray *ray);

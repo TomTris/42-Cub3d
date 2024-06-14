@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:35:48 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 10:45:06 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 10:57:27 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,20 @@ unsigned int	get_pixel(mlx_texture_t *texture, int wid, int hei)
 	uint8_t	*temp;
 	int		i;
 
-	temp = &texture->pixels[(wid * texture->width + hei) * sizeof(u_int32_t)];
+	temp = &texture->pixels[(hei * texture->width + wid) * sizeof(u_int32_t)];
 	ret = 0;
 	i = -1;
 	while (++i < 4)
 	{
 		ret = ret << 8;
-		if (temp == 0)
-			ret = ret | 0;
-		else
-		{
+		// if (temp == 0)
+		// 	ret = ret | 0;
+		// else
+		// {
 			// write(1, "a\n", 2);
 			ret = ret | temp[i];
 			// write(1, "b\n", 2);
-		}
+		// }
 	}
 	return (ret);
 }
