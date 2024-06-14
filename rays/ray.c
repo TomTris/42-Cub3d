@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 19:05:38 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 19:25:39 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void	draw_rays(t_data *data, t_ray *ray)
 		render_height(&render);
 		i++;
 	}
-	DDA(data, &ray[AMOUNT_OF_RAYS / 2]);
+	dda(data, &ray[AMOUNT_OF_RAYS / 2]);
 }

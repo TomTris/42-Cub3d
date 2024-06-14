@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 18:57:13 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:25:01 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	draw_mini_map(t_data *data, t_ray *ray);
 void	move_in_line(t_data *data, double angle, int boost);
 void	draw_player(t_data *data);
 void	get_cords(t_data *data, double angle, t_ray *ray);
-void	DDA(t_data *data, t_ray *ray);
+void	dda(t_data *data, t_ray *ray);
 void	transform_cordinates(t_data *data, t_ray *ray);
 void	draw_rays(t_data *data, t_ray *ray);
 int		len_2d_array(char **array);
@@ -133,6 +133,8 @@ void	delete_weapon_textures(t_data *data);
 void	init_weapon(t_data *data);
 void	display_wapon(t_data *data);
 void	get_closest_door(t_data *data, t_ray *ray, double x, double y);
+void	draw_floor_ceiling(t_data *data);
+void	mouse(void	*param);
 
 char	*str_join(char *str1, char *str2);
 char	*to_string(int c);

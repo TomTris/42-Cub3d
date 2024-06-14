@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:18:53 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 17:08:14 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:09:58 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,49 @@ void	move(void *param)
 
 	data = (t_data *)param;
 	rotate_view(data);
+}
+
+void	mouse(void	*param)
+{
+	static int	first = 1;
+	t_data		*data;
+	int32_t		x;
+	int32_t		y;
+
+	data = (t_data *)param;
+	if (first)
+	{
+		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+		first = 0;
+	}
+	else
+	{
+		mlx_get_mouse_pos(data->mlx, &x, &y);
+		data->player->angle_turn_horizontal = add_angles \
+		(data->player->angle_turn_horizontal, (double)(WIDTH / 2 - x) / 1000.0);
+		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+	}
+}
+
+void	draw_floor_ceiling(t_data *data)
+{
+	int	swapper;
+	int	i;
+	int	e;
+
+	i = 0;
+	swapper = data->image->height / 2;
+	while (i < (int)data->image->height)
+	{
+		e = 0;
+		while (e < (int)data->image->width)
+		{
+			if (i < swapper)
+				mlx_put_pixel(data->image, e, i, data->ceiling);
+			else
+				mlx_put_pixel(data->image, e, i, data->floor);
+			e++;
+		}
+		i++;
+	}
 }
