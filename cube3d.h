@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 12:46:40 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:11:06 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_data
 # define HEIGHT 1024
 
 # define MINMOVE 0.03125
-# define MINDISTANCE 0.125
+# define MINDISTANCE 0.25
 # define MINIMAP_SQUARE 16
 # define AMOUNT_SQUARES 19
 
