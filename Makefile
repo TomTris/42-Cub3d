@@ -48,7 +48,7 @@ $(NAME): $(FT_LIBS) $(OBJS)
 
 clean:
 	@rm -rf $(OBJS)
-# @rm -rf MLX42
+	@rm -rf MLX42
 
 fclean: clean
 	@rm -rf $(NAME)
