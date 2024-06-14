@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 13:07:54 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:06:51 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_cpy_map_to_data(t_data *data, t_map *parsing)
 	data->ea = mlx_load_png(parsing->ea);
 	data->no = mlx_load_png(parsing->no);
 	data->cursor = mlx_load_png("textures/empty.png");
-	if (!data->so || !data->we || !data->no || !data->we || !data->cursor)
+	if (!data->so || !data->we || !data->no || !data->ea || !data->cursor)
 		return (freeing_textures(data), free_t_map(parsing), exit(1));
 	data->map = parsing->map;
 	data->player->x = parsing->y;
@@ -69,6 +69,23 @@ void	ft_cpy_map_to_data(t_data *data, t_map *parsing)
 		data->player->angle_turn_horizontal = M_PI;
 	data->ceiling = parsing->ceiling;
 	free_t_map_0_map(parsing);
+}
+
+void	init_data2(t_data *data)
+{
+	data->weapon = mlx_texture_to_image(data->mlx, data->weapon_textures[0]);
+	if (!data->weapon)
+		return (mlx_delete_image(data->mlx, data->image), \
+		mlx_delete_image(data->mlx, data->minimap), \
+		mlx_close_window(data->mlx), free_data_pre_init(data), \
+		exit(EXIT_FAILURE));
+	if (mlx_image_to_window(data->mlx, data->weapon, data->mlx->width - \
+	data->weapon->width - 1, data->mlx->height - data->weapon->height))
+		return (mlx_delete_image(data->mlx, data->image), \
+		mlx_delete_image(data->mlx, data->minimap), \
+		mlx_delete_image(data->mlx, data->weapon), \
+		mlx_close_window(data->mlx), free_data_pre_init(data), \
+		exit(EXIT_FAILURE));
 }
 
 void	init_data(t_data *data)
@@ -91,8 +108,9 @@ void	init_data(t_data *data)
 	data->image->height - data->minimap->height) == -1)
 		return (mlx_delete_image(data->mlx, data->image), \
 		mlx_delete_image(data->mlx, data->minimap), \
-		mlx_close_window(data->mlx),free_data_pre_init(data), \
+		mlx_close_window(data->mlx), free_data_pre_init(data), \
 		exit(EXIT_FAILURE));
+	init_data2(data);
 }
 
 void	mouse(void	*param)
@@ -111,36 +129,16 @@ void	mouse(void	*param)
 	else
 	{
 		mlx_get_mouse_pos(data->mlx, &x, &y);
-		data->player->angle_turn_horizontal = add_angles(data->player->angle_turn_horizontal, (double)(WIDTH / 2 - x) / 1000.0);
+		data->player->angle_turn_horizontal = add_angles \
+		(data->player->angle_turn_horizontal, (double)(WIDTH / 2 - x) / 1000.0);
 		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 	}
 }
 
-
-// void	mouse(double xpos, double ypos, void *param)
-// {
-// 	t_data			*data;
-// 	static double	prev_x = 0.0;
-// 	static int		first = 1;
-
-// 	ypos += 0;
-// 	if (first)
-// 	{
-// 		first = 0;
-// 		prev_x = xpos;
-// 	}
-// 	else
-// 	{
-// 		data = (t_data *)param;
-// 		data->player->angle_turn_horizontal = add_angles(data->player->angle_turn_horizontal, (prev_x - xpos) / 5000.0);
-// 		prev_x = xpos;
-// 		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
-// 	}
-// }
-
 int	display(t_data *data, t_map *parsing)
 {
 	ft_cpy_map_to_data(data, parsing);
+	init_weapon(data);
 	init_data(data);
 	data->mlx_cur = mlx_create_cursor(data->cursor);
 	mlx_set_cursor(data->mlx, data->mlx_cur);

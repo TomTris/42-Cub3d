@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:28:20 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 12:37:42 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:30:14 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ void	draw_stuff(t_data *data, t_mini	*minimap)
 				return ;
 			}
 		}
-		if (minimap->end || data->map[minimap->y_player][minimap->x_player] == '1')
-			draw_space(data, minimap->x, minimap->y, 255);
+		if (minimap->end || \
+		data->map[minimap->y_player][minimap->x_player] == '1')
+			draw_space(data, minimap->x, minimap->y, MAP_WALL << 8 | 255);
+		else if (data->map[minimap->y_player][minimap->x_player] == '0')
+			draw_space(data, minimap->x, minimap->y, MAP_EMPTY << 8 | 255);
 		else
-			draw_space(data, minimap->x, minimap->y, 255 << 24 | 255);
+			draw_space(data, minimap->x, minimap->y, MAP_DOOR << 8 | 255);
 	}
 }
 
@@ -112,4 +115,5 @@ void	draw_mini_map(t_data *data, t_ray *ray)
 	}
 	draw_player(data);
 	draw_rays(data, ray);
+	display_wapon(data);
 }
