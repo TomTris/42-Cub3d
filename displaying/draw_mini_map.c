@@ -6,11 +6,11 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:28:20 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 20:11:26 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:43:16 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "../cub3d.h"
 
 void	draw_space(t_data *data, int x, int y, int color)
 {

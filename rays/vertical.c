@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vertical.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 19:17:27 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 17:33:33 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:23:13 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "../cub3d.h"
 
 static void	get_factor(t_data *data, t_ray *ray, double angle)
 {

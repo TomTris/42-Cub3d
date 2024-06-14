@@ -1,0 +1,12 @@
+
+F 153, 204, 255                
+C 85,  85,  85
+
+
+
+EA textures/spider.png
+
+NO textures/capri.png
+WE textures/wolf.png
+SO   textures/wick.png
+

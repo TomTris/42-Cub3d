@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   transform_cord_minimap.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:02:33 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 18:54:15 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:23:13 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "../cub3d.h"
 
 void	get_start_pos(t_data *data, t_ray *ray)
 {
