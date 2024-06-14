@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:40:26 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 18:45:26 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:09:43 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	freeing_textures(t_data *data)
 {
-
 	if (data->so)
 		mlx_delete_texture(data->so);
 	if (data->we)

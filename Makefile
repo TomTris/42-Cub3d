@@ -10,7 +10,6 @@ CFILES	=	main.c\
 			displaying/freeing.c\
 			displaying/display.c\
 			displaying/move_player.c\
-			displaying/test.c\
 			displaying/doors.c\
 			displaying/adding_numbers.c\
 			displaying/draw_mini_map.c\
