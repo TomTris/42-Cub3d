@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 19:34:39 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:37:57 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ uint32_t	limits(u_int32_t	t)
 	if (t > AMOUNT_SQUARES * AMOUNT_SQUARES - 1)
 		return (AMOUNT_SQUARES * AMOUNT_SQUARES - 1);
 	return (t);
-	
 }
 
 void	dda(t_data *data, t_ray *ray)

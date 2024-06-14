@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:35:48 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 18:58:50 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 19:38:09 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	render_height_more_than_1(t_render *r)
 		height_cnt -= 1;
 	}
 }
-
 
 void	render_height(t_render *r)
 {
