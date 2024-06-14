@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:02:33 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 12:44:51 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:54:15 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ void	get_start_pos(t_data *data, t_ray *ray)
 	int		player_x;
 	int		player_y;
 
-	player_x = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + (int)((double)MINIMAP_SQUARE * (data->player->x - \
+	player_x = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + \
+	(int)((double)MINIMAP_SQUARE * (data->player->x - \
 	(double)((int)data->player->x)));
-	player_y = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + (int)((double)MINIMAP_SQUARE * (data->player->y - \
+	player_y = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + \
+	(int)((double)MINIMAP_SQUARE * (data->player->y - \
 	(double)((int)data->player->y)));
 	ray->start_pos_x = player_x;
 	ray->start_pos_y = player_y;
 	ray->map_cord_x = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + \
 	lround((ray->x - (double)((int)data->player->x)) * (double)MINIMAP_SQUARE);
-	ray->map_cord_y =  MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + \
+	ray->map_cord_y = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + \
 	lround((ray->y - (double)((int)data->player->y)) * (double)MINIMAP_SQUARE);
 }
 

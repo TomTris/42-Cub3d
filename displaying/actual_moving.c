@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:49:55 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 12:42:37 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:55:04 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void	draw_player(t_data *data)
 	int	addy;
 	int	addx;
 
-	x = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + (int)((double)MINIMAP_SQUARE * (data->player->x - \
+	x = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + \
+	(int)((double)MINIMAP_SQUARE * (data->player->x - \
 	(double)((int)data->player->x)));
-	y = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + (int)((double)MINIMAP_SQUARE * (data->player->y - \
+	y = MINIMAP_SQUARE * ((int)AMOUNT_SQUARES / 2) + \
+	(int)((double)MINIMAP_SQUARE * (data->player->y - \
 	(double)((int)data->player->y)));
 	color = 255 << 16 | 255;
 	addy = -2;

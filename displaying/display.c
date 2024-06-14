@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 18:32:33 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:45:05 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void	ft_cpy_map_to_data(t_data *data, t_map *parsing)
 	data->ea = mlx_load_png(parsing->ea);
 	data->no = mlx_load_png(parsing->no);
 	data->cursor = mlx_load_png("textures/empty.png");
-	if (!data->so || !data->we || !data->no || !data->ea || !data->cursor)
+	data->door = mlx_load_png("textures/door.png");
+	if (!data->so || !data->we || !data->no || !data->ea || !data->cursor \
+	|| !data->door)
 		return (freeing_textures(data), free_t_map(parsing), exit(1));
 	data->map = parsing->map;
 	data->player->x = parsing->y;

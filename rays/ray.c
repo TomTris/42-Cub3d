@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 17:43:50 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:47:45 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ double	get_distance_to_point(t_player *player, double x, double y)
 	return (sqrt(pow(x - player->x, 2.0) + pow(player->y - y, 2.0)));
 }
 
-mlx_texture_t	*get_texture(t_data *data, int texture)
+mlx_texture_t	*get_texture(t_data *data, t_ray *ray, int texture)
 {
+	if (data->map[(int)ray->y][(int)ray->x] == 'd')
+		return (data->door);
 	if (texture == 0)
 		return (data->ea);
 	else if (texture == 1)
@@ -43,7 +45,7 @@ int	get_wid_on_texture(t_data *data, t_ray *ray)
 	mlx_texture_t	*temp;
 	double			t;
 
-	temp = get_texture(data, ray->texture);
+	temp = get_texture(data, ray, ray->texture);
 	if (ray->texture == 0)
 	{
 		t = fabs(ray->y - (double)((int)ray->y));
@@ -77,7 +79,7 @@ void	draw_rays(t_data *data, t_ray *ray)
 		M_PI / 3.0 / AMOUNT_OF_RAYS * ((double) i) - (M_PI / 6.0)), &ray[i]);
 		transform_cordinates(data, &ray[i]);
 		// DDA(data, &ray[i]);
-		temp = get_texture(data, ray[i].texture);
+		temp = get_texture(data, &(ray[i]), ray[i].texture);
 		// dprintf(1, ">>>>>%i     %i<<<\n", i, ray[i].texture);
 		// printf("%u\n", get_pixel(temp, 50, 50));
 		render_height(data->image, temp, temp->height, 1.0 / ray[i].distance, get_wid_on_texture(data, &ray[i]), AMOUNT_OF_RAYS - 1 - i);
