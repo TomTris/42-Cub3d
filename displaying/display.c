@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 12:49:06 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:07:54 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,28 @@ void	mouse(void	*param)
 	}
 }
 
+
+// void	mouse(double xpos, double ypos, void *param)
+// {
+// 	t_data			*data;
+// 	static double	prev_x = 0.0;
+// 	static int		first = 1;
+
+// 	ypos += 0;
+// 	if (first)
+// 	{
+// 		first = 0;
+// 		prev_x = xpos;
+// 	}
+// 	else
+// 	{
+// 		data = (t_data *)param;
+// 		data->player->angle_turn_horizontal = add_angles(data->player->angle_turn_horizontal, (prev_x - xpos) / 5000.0);
+// 		prev_x = xpos;
+// 		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+// 	}
+// }
+
 int	display(t_data *data, t_map *parsing)
 {
 	ft_cpy_map_to_data(data, parsing);
@@ -130,5 +152,6 @@ int	display(t_data *data, t_map *parsing)
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	free_data_pre_init(data);
+	// mlx_mouse_hook()
 	return (1);
 }
