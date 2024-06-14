@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 16:29:48 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:19:55 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_ray
 	double	y_factor;
 	double	x_factor_f;
 	double	y_factor_f;
+	double	closest_door_x;
+	double	closest_door_y;
 	int		texture;
 }	t_ray;
 
@@ -80,7 +82,7 @@ typedef struct s_data
 	mlx_texture_t		*so;
 	mlx_texture_t		*we;
 	mlx_texture_t		*ea;
-	mlx_texture_t		*weapon_textures[20];
+	mlx_texture_t		*weapon_textures[50];
 	mlx_texture_t		*cursor;
 	mlx_win_cursor_t	*mlx_cur;
 	int					map_height;
@@ -124,14 +126,16 @@ void	get_horizontal(t_data *data, double angle, t_ray *ray);
 void	calculate_distance(t_data *data, t_ray *ray, \
 double *distance1, double *distance2);
 double	get_distance_to_point(t_player *player, double x, double y);
-void	open_close_nearst_door(t_data *data);
+void	open_close_nearst_door(t_data *data, t_ray *ray);
 double	get_distance_to_point(t_player *player, double x, double y);
 void	delete_weapon_textures(t_data *data);
 void	init_weapon(t_data *data);
 void	display_wapon(t_data *data);
+void	get_closest_door(t_data *data, t_ray *ray, double x, double y);
 
 char	*str_join(char *str1, char *str2);
 char	*to_string(int c);
+void	handle_door(t_data *data, t_ray *ray);
 
 void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen);
 unsigned int	get_pixel(mlx_texture_t *texture, int wid, int hei);

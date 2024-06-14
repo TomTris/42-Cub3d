@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 19:17:27 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 19:29:47 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:33:33 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,27 @@ void	get_vertical(t_data *data, double angle, t_ray *ray)
 {
 	get_factor(data, ray, angle);
 	if ((int)ray->t_yv < 0 || (int)ray->t_yv >= data->map_height || \
-	(int)ray->t_xv < 0 || (int)ray->t_xv >= data->map_width || \
-	is_not_walkable(data->map[(int)ray->t_yv][(int)ray->t_xv]))
+	(int)ray->t_xv < 0 || (int)ray->t_xv >= data->map_width)
 		return ;
+	if (is_not_walkable(data->map[(int)ray->t_yv][(int)ray->t_xv]))
+	{
+		if (data->map[(int)ray->t_yv][(int)ray->t_xv] == 'D' || \
+		data->map[(int)ray->t_yv][(int)ray->t_xv] == 'd')
+			get_closest_door(data, ray, ray->t_xv, ray->t_yv);
+		return ;
+	}
 	while (!is_not_walkable(data->map[(int)ray->t_yv][(int)ray->t_xv]))
 	{
+		if (data->map[(int)ray->t_yv][(int)ray->t_xv] == 'D' || \
+		data->map[(int)ray->t_yv][(int)ray->t_xv] == 'd')
+			get_closest_door(data, ray, ray->t_xv, ray->t_yv);
 		ray->t_yv += ray->ta * ray->y_factor;
 		ray->t_xv = ray->t_xv + ray->x_factor;
 		if ((int)ray->t_yv < 0 || (int)ray->t_yv >= data->map_height \
 		|| (int)ray->t_xv < 0 || (int)ray->t_xv >= data->map_width)
 			return ;
 	}
-	ray->x = ray->t_xv;
-	ray->y = ray->t_yv;
+	if (data->map[(int)ray->t_yv][(int)ray->t_xv] == 'D' || \
+	data->map[(int)ray->t_yv][(int)ray->t_xv] == 'd')
+		get_closest_door(data, ray, ray->t_xv, ray->t_yv);
 }

@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 13:58:55 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:43:50 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	get_wid_on_texture(t_data *data, t_ray *ray)
 	return ((int)lround(t * temp->width));
 }
 
-int	raya(int a1, int b);
 void	draw_rays(t_data *data, t_ray *ray)
 {
 	int				i;
@@ -72,6 +71,8 @@ void	draw_rays(t_data *data, t_ray *ray)
 	i = 0;
 	while (i < AMOUNT_OF_RAYS)
 	{
+		ray[i].closest_door_x = 1000000000.0;
+		ray[i].closest_door_y = 1000000000.0;
 		get_cords(data, add_angles(data->player->angle_turn_horizontal, \
 		M_PI / 3.0 / AMOUNT_OF_RAYS * ((double) i) - (M_PI / 6.0)), &ray[i]);
 		transform_cordinates(data, &ray[i]);
@@ -80,7 +81,6 @@ void	draw_rays(t_data *data, t_ray *ray)
 		// dprintf(1, ">>>>>%i     %i<<<\n", i, ray[i].texture);
 		// printf("%u\n", get_pixel(temp, 50, 50));
 		render_height(data->image, temp, temp->height, 1.0 / ray[i].distance, get_wid_on_texture(data, &ray[i]), AMOUNT_OF_RAYS - 1 - i);
-		raya(i, 0);
 		// DDA(data, &ray[i]);
 		i++;
 	}

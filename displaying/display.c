@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 16:06:51 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:32:33 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,26 @@ void	draw_floor_ceiling(t_data *data)
 
 void	test(void *param)
 {
-	t_data	*data;
-	t_ray	ray[(int)AMOUNT_OF_RAYS];
+	static int	can_do = 0;
+	t_data		*data;
+	t_ray		ray[(int)AMOUNT_OF_RAYS];
 
 	data = (t_data *)param;
 	draw_floor_ceiling(data);
 	draw_mini_map(data, ray);
+	if (!can_do && mlx_is_key_down(data->mlx, MLX_KEY_F))
+	{
+		can_do += 1;
+		handle_door(data, &ray[(int)AMOUNT_OF_RAYS / 2]);
+	}
+	else
+	{
+		if (can_do != 0)
+		{
+			can_do += 1;
+			can_do %= 10;
+		}
+	}
 }
 
 void	ft_cpy_map_to_data(t_data *data, t_map *parsing)

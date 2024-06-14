@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 15:14:59 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 16:32:00 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:26:48 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	delete_weapon_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 20)
+	while (i < 50)
 	{
 		if (data->weapon_textures[i] != NULL)
 		{
@@ -36,7 +36,7 @@ int	init_textures_weapon(t_data *data)
 	char	*n;
 
 	i = 0;
-	while (i < 20)
+	while (i < 50)
 	{
 		n = to_string(i + 1);
 		if (!n)
@@ -72,6 +72,7 @@ mlx_texture_t *texture)
 	int	len;
 	int	i;
 
+	data += 0;
 	if (texture->width != weapon->width || texture->height != weapon->height)
 		return (mlx_close_window(data->mlx));
 	len = weapon->height * weapon->width * sizeof(u_int32_t);
@@ -86,8 +87,12 @@ mlx_texture_t *texture)
 void	display_wapon(t_data *data)
 {
 	static int	counter = 0;
+	int			index;
 
-	displaying_frame(data, data->weapon, data->weapon_textures[counter / 20]);
+	index = counter / 3;
+	if (index > 49)
+		index = 99 - index;
+	displaying_frame(data, data->weapon, data->weapon_textures[index]);
 	counter++;
-	counter %= 400;
+	counter %= 300;
 }

@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:18:53 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 14:27:07 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:08:14 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,7 @@ void	exiting(mlx_key_data_t keydata, void *param)
 void	move(void *param)
 {
 	t_data		*data;
-	static int	can_do = 0;
 
 	data = (t_data *)param;
-	if (!can_do && mlx_is_key_down(data->mlx, MLX_KEY_F))
-	{
-		can_do += 1;
-		open_close_nearst_door(data);
-	}
-	else
-	{
-		if (can_do != 0)
-		{
-			can_do += 1;
-			can_do %= 100;
-		}
-		rotate_view(data);
-	}
+	rotate_view(data);
 }

@@ -6,11 +6,22 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 19:25:07 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 19:56:04 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:30:53 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+
+void	get_closest_door(t_data *data, t_ray *ray, double x, double y)
+{
+	if (get_distance_to_point(data->player, x, y) < \
+	get_distance_to_point(data->player, ray->closest_door_x, \
+	ray->closest_door_y))
+	{
+		ray->closest_door_x = x;
+		ray->closest_door_y = y;
+	}
+}
 
 static void	get_factor(t_data *data, t_ray *ray, double angle)
 {
@@ -39,16 +50,26 @@ static void	get_factor(t_data *data, t_ray *ray, double angle)
 void	get_horizontal(t_data *data, double angle, t_ray *ray)
 {
 	get_factor(data, ray, angle);
-	if ((int)ray->t_x < 0 || (int)ray->t_x >= data->map_width \
-	|| is_not_walkable(data->map[(int)ray->t_y][(int)ray->t_x]))
+	if ((int)ray->t_x < 0 || (int)ray->t_x >= data->map_width)
+		return ;
+	if (is_not_walkable(data->map[(int)ray->t_y][(int)ray->t_x]))
 	{
+		if (data->map[(int)ray->t_y][(int)ray->t_x] == 'D' || \
+		data->map[(int)ray->t_y][(int)ray->t_x] == 'd')
+			get_closest_door(data, ray, ray->t_x, ray->t_y);
 		return ;
 	}
 	while (!is_not_walkable(data->map[(int)ray->t_y][(int)ray->t_x]))
 	{
+		if (data->map[(int)ray->t_y][(int)ray->t_x] == 'D' || \
+		data->map[(int)ray->t_y][(int)ray->t_x] == 'd')
+			get_closest_door(data, ray, ray->t_x, ray->t_y);
 		ray->t_y = ray->t_y + ray->y_factor;
 		ray->t_x += ray->ta * ray->x_factor ;
 		if ((int)ray->t_x < 0 || (int)ray->t_x >= data->map_width)
 			return ;
 	}
+	if (data->map[(int)ray->t_y][(int)ray->t_x] == 'D' || \
+	data->map[(int)ray->t_y][(int)ray->t_x] == 'd')
+		get_closest_door(data, ray, ray->t_x, ray->t_y);
 }
