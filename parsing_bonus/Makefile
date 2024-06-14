@@ -22,7 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	cc -o $(NAME) $(OBJS) libft/libft.a
+	ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@

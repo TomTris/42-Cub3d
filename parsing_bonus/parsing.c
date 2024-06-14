@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 16:28:31 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 16:37:06 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,34 +128,34 @@ t_map	*ft_map(int ac, char **av)
 	return (ret);
 }
 
-int	main2(int ac, char **av)
-{
-	t_map	*map;
+// int	main2(int ac, char **av)
+// {
+// 	t_map	*map;
 
-	map = ft_map(ac, av);
-	if (map == 0)
-		return (printf("somewher wrong\n"), 1);
-	printf("%d\n", map->dire);
-	printf("%f\n", map->x);
-	printf("%f\n", map->y);
-	printf("%s\n", map->no);
-	printf("%s\n", map->so);
-	printf("%s\n", map->we);
-	printf("%s\n", map->ea);
-	printf("%u\n", map->floor);
-	printf("%u\n", map->ceiling);
+// 	map = ft_map(ac, av);
+// 	if (map == 0)
+// 		return (printf("somewher wrong\n"), 1);
+// 	printf("%d\n", map->dire);
+// 	printf("%f\n", map->x);
+// 	printf("%f\n", map->y);
+// 	printf("%s\n", map->no);
+// 	printf("%s\n", map->so);
+// 	printf("%s\n", map->we);
+// 	printf("%s\n", map->ea);
+// 	printf("%u\n", map->floor);
+// 	printf("%u\n", map->ceiling);
 
-	int	i =0;
-	while (map->map[i])
-	{
-		printf("%s\n", map->map[i++]);
-	}
-		free_t_map(map);
-	return (0);
-}
+// 	int	i =0;
+// 	while (map->map[i])
+// 	{
+// 		printf("%s\n", map->map[i++]);
+// 	}
+// 		free_t_map(map);
+// 	return (0);
+// }
 
-int	main(int ac, char **av)
-{
-	main2(ac, av);
-	// system("leaks parsing.a");
-}
+// int	main(int ac, char **av)
+// {
+// 	main2(ac, av);
+// 	// system("leaks parsing.a");
+// }

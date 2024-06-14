@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 13:11:06 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:29:48 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_data
 	t_player			*player;
 	mlx_t				*mlx;
 	mlx_image_t			*image;
+	mlx_image_t			*weapon;
 	uint32_t			ceiling;
 	uint32_t			floor;
 	char				**map;
@@ -79,6 +80,7 @@ typedef struct s_data
 	mlx_texture_t		*so;
 	mlx_texture_t		*we;
 	mlx_texture_t		*ea;
+	mlx_texture_t		*weapon_textures[20];
 	mlx_texture_t		*cursor;
 	mlx_win_cursor_t	*mlx_cur;
 	int					map_height;
@@ -93,6 +95,10 @@ typedef struct s_data
 # define MINDISTANCE 0.25
 # define MINIMAP_SQUARE 16
 # define AMOUNT_SQUARES 19
+
+# define MAP_EMPTY 0XFF0000
+# define MAP_DOOR 0XD500FF
+# define MAP_WALL 0X000000
 
 # define AMOUNT_OF_RAYS WIDTH
 
@@ -117,9 +123,15 @@ void	get_vertical(t_data *data, double angle, t_ray *ray);
 void	get_horizontal(t_data *data, double angle, t_ray *ray);
 void	calculate_distance(t_data *data, t_ray *ray, \
 double *distance1, double *distance2);
+double	get_distance_to_point(t_player *player, double x, double y);
+void	open_close_nearst_door(t_data *data);
+double	get_distance_to_point(t_player *player, double x, double y);
+void	delete_weapon_textures(t_data *data);
+void	init_weapon(t_data *data);
+void	display_wapon(t_data *data);
 
-
-
+char	*str_join(char *str1, char *str2);
+char	*to_string(int c);
 
 void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen);
 unsigned int	get_pixel(mlx_texture_t *texture, int wid, int hei);

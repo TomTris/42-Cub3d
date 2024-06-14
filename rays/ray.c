@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 11:01:10 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:58:55 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ double *distance1, double *distance2)
 	pow(ray->t_yv - data->player->y, 2.0));
 	*distance2 = sqrt(pow(ray->t_x - data->player->x, 2.0) + \
 	pow(ray->t_y - data->player->y, 2.0));
+}
+
+double	get_distance_to_point(t_player *player, double x, double y)
+{
+	return (sqrt(pow(x - player->x, 2.0) + pow(player->y - y, 2.0)));
 }
 
 mlx_texture_t	*get_texture(t_data *data, int texture)

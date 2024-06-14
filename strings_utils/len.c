@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:55:08 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 15:52:29 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:07:24 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,50 @@ int	len_2d_array(char **array)
 	return (i);
 }
 
-void	change_one_to_zero(t_data *data, char **array)
+char	*to_string(int c)
 {
-	int	i;
-	int	e;
+	int		i;
+	char	*s;
+	int		cur;
 
-	i = 0;
-	while (array[i])
-	{
-		e = 0;
-		while (array[i][e])
-		{
-			if (array[i][e] == '1')
-				array[i][e] = '0';
-			else
-				array[i][e] = '1';
-			e++;
-		}
-		i++;
-	}
-	array[(int)data->player->y][(int)data->player->x] = '0';
+	if (c > 9)
+		i = 2;
+	else
+		i = 1;
+	cur = 0;
+	s = malloc(i * sizeof(char) + sizeof(char));
+	if (!s)
+		return (NULL);
+	if (c > 9)
+		s[cur++] = c / 10 + '0';
+	s[cur] = c % 10 + '0';
+	s[i] = 0;
+	return (s);
+}
+
+char	*str_join(char *str1, char *str2)
+{
+	int		ptr1;
+	int		ptr2;
+	char	*out;
+
+	out = malloc((ft_str_len(str1) + ft_str_len(str2) + 1) * sizeof(char));
+	if (!out)
+		return (NULL);
+	ptr1 = 0;
+	ptr2 = 0;
+	while (str1[ptr1])
+		out[ptr2++] = str1[ptr1++];
+	ptr1 = 0;
+	while (str2[ptr1])
+		out[ptr2++] = str2[ptr1++];
+	out[ptr2] = 0;
+	return (out);
 }
 
 int	is_not_walkable(char c)
 {
-	if (c == '1')
+	if (c == '1' || c == 'd')
 		return (1);
 	return (0);
 }

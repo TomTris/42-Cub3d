@@ -1,4 +1,5 @@
-NAME	= cub3d
+NAME		= cub3d
+NAME_DOOR	= cub3d_door
 CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code
 CC = gcc
 
@@ -10,9 +11,11 @@ CFILES	=	main.c\
 			displaying/display.c\
 			displaying/move_player.c\
 			displaying/test.c\
+			displaying/doors.c\
 			displaying/adding_numbers.c\
 			displaying/draw_mini_map.c\
 			displaying/actual_moving.c\
+			displaying/weapon.c\
 			rays/ray.c\
 			rays/get_cords.c\
 			rays/draw_line.c\
@@ -26,6 +29,11 @@ CFILES	=	main.c\
 OBJS = $(CFILES:.c=.o)
 
 all:  $(NAME)
+
+$(NAME_DOOR) : $(FT_LIBS) $(OBJS) 
+	make -C parsing_bonus
+	$(CC)  $(CFLAGS) $(OBJS) parsing_bonus/parsing.a parsing_bonus/libft/libft.a $(FT_LIBS) -o $(NAME_DOOR) -ldl -lglfw -lm -g
+	@echo "\033[34m'$(NAME_DOOR)'\033[0m is ready to execute!"
 	
 $(NAME): $(FT_LIBS) $(OBJS) 
 	make -C parsing
@@ -48,4 +56,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: $(NAME_DOOR)
+
+.PHONY: all clean fclean re bonus
