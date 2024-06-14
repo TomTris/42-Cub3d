@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:35:48 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/13 21:37:21 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:26:22 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, 
 	// return ;
 	// return ;
 	printf("ray = %d\n", raya(0, 1));
+	if (wid_on_screen >= 993) 
+		return ;
 	int	hei_highest = WINDOW_HEIGHT / 2 + WINDOW_HEIGHT * rate;
 	// printf("5\n");
 	int	height_cnt = WINDOW_HEIGHT;
@@ -81,20 +83,20 @@ void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, 
 		if (hei_highest < 0)
 			hei_highest = 0;
 		// printf("7\n");
-		printf("1 = %d\n", height_cnt);
+		// printf("1 = %d\n", height_cnt);
 		while (height_cnt > hei_highest)
 		{
 			
 			// printf("8\n");
 			// printf("%d\n", WINDOW_HEIGHT - 2 * hei_highest);
 			height_on_texture = (height_cnt - hei_highest) / (WINDOW_HEIGHT - 2 * hei_highest) * texture_hei;
-			dprintf(1, "4 = %d\n", height_cnt);
+			// dprintf(1, "4 = %d\n", height_cnt);
 			// printf("1 = {%d}, 2 = {%d}\n", wid_on_screen, height_cnt);
 			mlx_put_pixel(image, wid_on_screen, height_cnt, get_pixel(texture, wid_on_texture, height_on_texture));
-			dprintf(1, "3 = %d\n", height_cnt);
+			// dprintf(1, "3 = %d\n", height_cnt);
 			height_cnt -= 1;
 		}
-		printf("2= %d\n", height_cnt);
+		// printf("2= %d\n", height_cnt);
 		texture_hei = 0;
 		rate = 0;
 		wid_on_texture = 0;
