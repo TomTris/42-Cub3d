@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:40:26 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 16:14:53 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:45:26 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	freeing_textures(t_data *data)
 		mlx_delete_texture(data->no);
 	if (data->cursor)
 		mlx_delete_texture(data->cursor);
+	if (data->door)
+		mlx_delete_texture(data->door);
 }
 
 void	free_data_pre_init(t_data *data)

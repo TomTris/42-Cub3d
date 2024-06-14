@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:28:20 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 16:30:14 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:02:04 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	get_players_x_y(t_data *data, int *x, int *y)
 void	draw_stuff(t_data *data, t_mini	*minimap)
 {
 	if (minimap->y_player < 0 || minimap->x_player < 0 || !minimap->can_access)
-		draw_space(data, minimap->x, minimap->y, 255);
+		draw_space(data, minimap->x, minimap->y, MAP_WALL << 8 | 255);
 	else
 	{
 		if (!minimap->end)
@@ -80,7 +80,7 @@ void	fill_first_time(t_data *data)
 			x = 0;
 			while (x < (int)data->minimap->width)
 			{
-				mlx_put_pixel(data->minimap, x, y, 255);
+				mlx_put_pixel(data->minimap, x, y, MAP_WALL << 8 | 255);
 				x++;
 			}
 			y++;

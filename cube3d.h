@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:32:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 18:19:55 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:57:13 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_data
 	uint32_t			ceiling;
 	uint32_t			floor;
 	char				**map;
+	mlx_texture_t		*door;
 	mlx_texture_t		*no;
 	mlx_texture_t		*so;
 	mlx_texture_t		*we;
@@ -98,9 +99,9 @@ typedef struct s_data
 # define MINIMAP_SQUARE 16
 # define AMOUNT_SQUARES 19
 
-# define MAP_EMPTY 0XFF0000
+# define MAP_EMPTY 0XFFFFFF
 # define MAP_DOOR 0XD500FF
-# define MAP_WALL 0X000000
+# define MAP_WALL 0X808080
 
 # define AMOUNT_OF_RAYS WIDTH
 
