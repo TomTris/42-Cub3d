@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 16:37:06 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:09:44 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	ft_n(char **map, t_map *ret)
 	print_fd(2, "Error\nSth wrong\n");
 }
 
-
 //non_map contains 8 meaningfull lines with meaning full value, check only
 //before line ft_is_part_of_map
 //un_non_map - else
@@ -119,7 +118,7 @@ t_map	*ft_map(int ac, char **av)
 	free_split(file_content);
 	if (check == 0)
 		return (recover_d(&d, ret->map), free_t_map(ret), NULL);
-	ft_1_0_map(d , ret->map, ret);
+	ft_1_0_map(d, ret->map, ret);
 	ft_map_cut_height(ret->map, 0, -1, 1);
 	ft_map_cut_width1(ret->map);
 	if (ft_map_cut_width2(ret->map, 0, 0, 0) == 0)

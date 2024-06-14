@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 16:27:25 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 17:09:48 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_map
 	unsigned int		floor;
 	unsigned int		ceiling;
 }	t_map;
-
-
 
 typedef struct s_po
 {

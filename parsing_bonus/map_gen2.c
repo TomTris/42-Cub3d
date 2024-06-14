@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:41:58 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 16:00:31 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 17:09:10 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,7 @@ t_po	*is_surrounded(char **map, t_map *ret, int *check)
 
 	if (player_find(&po, map) == 0)
 		return (NULL);
-	ret->x = ((double) po.x) + 0.5;
-	ret->y = ((double) po.y) + 0.5;
 	d = ft_find_door(map, check);
-	if (d == 0)
-		printf("123\n");
 	if (*check == 0)
 		return (NULL);
 	ret->dire = 3;
@@ -129,6 +125,7 @@ t_po	*is_surrounded(char **map, t_map *ret, int *check)
 		if (*check == -1)
 			return (*check = 0, free_t_po_list(&d), NULL);
 		if (*check == 0)
-			return (*check = 1, d);
+			return (ret->x = ((double) po.x) + 0.5,
+				ret->y = ((double) po.y) + 0.5, *check = 1, d);
 	}
 }
