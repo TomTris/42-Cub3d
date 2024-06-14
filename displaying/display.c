@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:33:19 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 12:33:18 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:49:06 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	init_data(t_data *data)
 	if (!data->image)
 		return (mlx_close_window(data->mlx), free_data_pre_init(data), \
 		exit(EXIT_FAILURE));
-	data->minimap = mlx_new_image(data->mlx, 288, 288);
+	data->minimap = mlx_new_image(data->mlx, AMOUNT_SQUARES * MINIMAP_SQUARE, \
+	AMOUNT_SQUARES * MINIMAP_SQUARE);
 	if (!data->minimap)
 		return (mlx_delete_image(data->mlx, data->image), \
 		mlx_close_window(data->mlx), free_data_pre_init(data), \
@@ -102,7 +103,6 @@ void	mouse(void	*param)
 	int32_t		y;
 
 	data = (t_data *)param;
-	mlx_set_cursor(data->mlx, data->mlx_cur);
 	if (first)
 	{
 		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
@@ -113,7 +113,6 @@ void	mouse(void	*param)
 		mlx_get_mouse_pos(data->mlx, &x, &y);
 		data->player->angle_turn_horizontal = add_angles(data->player->angle_turn_horizontal, (double)(WIDTH / 2 - x) / 1000.0);
 		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
-		mlx_set_cursor(data->mlx, data->mlx_cur);
 	}
 }
 
