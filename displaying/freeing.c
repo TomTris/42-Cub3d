@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   freeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:40:26 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 19:09:43 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:23:13 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "../cub3d.h"
 
 void	freeing_textures(t_data *data)
 {

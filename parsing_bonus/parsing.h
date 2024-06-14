@@ -6,14 +6,14 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:55 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 17:09:48 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 20:26:28 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_map
 {

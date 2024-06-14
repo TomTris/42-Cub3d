@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   actual_moving.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:49:55 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 18:55:04 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:23:13 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "../cub3d.h"
 
 void	draw_player(t_data *data)
 {
