@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 21:36:50 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:45:05 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	get_wid_on_texture(t_data *data, t_ray *ray)
 	if (ray->texture == 0)
 	{
 		t = fabs(ray->y - (double)((int)ray->y));
-		
 	}
 	else if (ray->texture == 1)
 	{
@@ -51,7 +50,6 @@ int	get_wid_on_texture(t_data *data, t_ray *ray)
 	else if (ray->texture == 2)
 	{
 		t = fabs(ray->y - (double)((int)ray->y));
-		
 	}
 	else
 	{
@@ -78,6 +76,7 @@ void	draw_rays(t_data *data, t_ray *ray)
 		// printf("%u\n", get_pixel(temp, 50, 50));
 		render_height(data->image, temp, temp->height, 1.0 / ray[i].distance, get_wid_on_texture(data, &ray[i]), i);
 		raya(i, 0);
+		// DDA(data, &ray[i]);
 		i++;
 	}
 	DDA(data, &ray[AMOUNT_OF_RAYS / 2]);
