@@ -1,8 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = parsing.a
-LIBFT_DIR = libft
-LIBFT_A = libft/libft.a
 
 OBJ_DIR = obj
 SRC		= 	parsing.c\
@@ -21,26 +19,23 @@ OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT_DIR)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir obj
+	@mkdir obj
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJS)
-	rm -rf $(OBJ_DIR)
+	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	make fclean -C $(LIBFT_DIR)
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
