@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:35:48 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 18:29:38 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 18:58:50 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,6 @@
 
 #define WINDOW_HEIGHT 1023
 #define WINDOW_WIDTH 1023
-
-int	raya(int a1, int b)
-{
-	static int	a = 0;
-
-	a = 0;
-
-	if (b == 1)
-		return (a);
-	a = a1;
-	return (0);
-}
 
 unsigned int	get_pixel(mlx_texture_t *texture, int wid, int hei)
 {
@@ -47,59 +35,63 @@ unsigned int	get_pixel(mlx_texture_t *texture, int wid, int hei)
 	return (ret);
 }
 
-void	render_height_less_than_1(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen)
+void	render_height_less_than_1(t_render *r)
 {
 	double	height_on_texture;
 	double	height_cnt ;
 	double	hei_highest ;
 	int		a;
 	int		b;
-	
-	height_cnt = (WINDOW_HEIGHT  + WINDOW_HEIGHT * rate) / 2;
-	hei_highest = (WINDOW_HEIGHT  - WINDOW_HEIGHT * rate) / 2;
+
+	height_cnt = (WINDOW_HEIGHT + WINDOW_HEIGHT * r->rate) / 2;
+	hei_highest = (WINDOW_HEIGHT - WINDOW_HEIGHT * r->rate) / 2;
 	while (height_cnt >= hei_highest)
 	{
-		height_on_texture =  (height_cnt - hei_highest) /  (WINDOW_HEIGHT - 2 * hei_highest) *  texture_hei;
+		height_on_texture = (height_cnt - hei_highest) \
+		/ (WINDOW_HEIGHT - 2 * hei_highest) * r->texture_hei;
 		a = (int) lround(height_on_texture);
-		if ((int) lround(height_on_texture) == texture_hei)
+		if ((int) lround(height_on_texture) == r->texture_hei)
 			a = (int) lround(height_on_texture) - 1;
-		b = wid_on_texture;
-		if (wid_on_texture > 0)
-			b = wid_on_texture - 1;
-		mlx_put_pixel(image, wid_on_screen,(int) height_cnt, get_pixel(texture, b, a));
+		b = r->wid_on_texture;
+		if (r->wid_on_texture > 0)
+			b = r->wid_on_texture - 1;
+		mlx_put_pixel(r->image, r->wid_on_screen, (int) height_cnt,
+			get_pixel(r->texture, b, a));
 		height_cnt -= 1;
 	}
 }
 
-void	render_height_more_than_1(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen)
+void	render_height_more_than_1(t_render *r)
 {
 	double	height_on_texture;
-	double	height_cnt = WINDOW_HEIGHT;
+	double	height_cnt;
 	int		a;
 	int		b;
-	double down_part = ((rate - 1) / 2) / rate * texture_hei;
+	double	down_part;
 
+	down_part = ((r->rate - 1) / 2) / r->rate * r->texture_hei;
+	height_cnt = WINDOW_HEIGHT;
 	while (height_cnt >= 0)
 	{
-		height_on_texture =  (height_cnt /  WINDOW_HEIGHT) * texture_hei / rate + down_part;
+		height_on_texture = (height_cnt / WINDOW_HEIGHT) \
+		* r->texture_hei / r->rate + down_part;
 		a = (int) lround(height_on_texture);
-		if ((int) lround(height_on_texture) == texture_hei)
+		if ((int) lround(height_on_texture) == r->texture_hei)
 			a = (int) lround(height_on_texture) - 1;
-		b = wid_on_texture;
-		if (wid_on_texture > 0)
-			b = wid_on_texture - 1;
-		mlx_put_pixel(image, wid_on_screen,(int) height_cnt, get_pixel(texture, b, a));
+		b = r->wid_on_texture;
+		if (r->wid_on_texture > 0)
+			b = r->wid_on_texture - 1;
+		mlx_put_pixel(r->image, r->wid_on_screen, (int) height_cnt,
+			get_pixel(r->texture, b, a));
 		height_cnt -= 1;
 	}
 }
 
 
-void	render_height(mlx_image_t *image, mlx_texture_t *texture, int texture_hei, double rate, int wid_on_texture, int wid_on_screen)
+void	render_height(t_render *r)
 {
-	if (rate > 1)
-		render_height_more_than_1(image, texture, texture_hei, rate, wid_on_texture, wid_on_screen);
+	if (r->rate > 1)
+		render_height_more_than_1(r);
 	else
-		render_height_less_than_1(image, texture, texture_hei, rate, wid_on_texture, wid_on_screen);
+		render_height_less_than_1(r);
 }
-
-// mlx_put_pixel(data.image, i, j, 255 << 16 | 10);
