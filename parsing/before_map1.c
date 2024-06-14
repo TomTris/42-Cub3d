@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:12:23 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/11 17:59:22 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 17:00:54 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ char	**before_map_good(char **file_content, int *i, int cnt_line_not_map)
 				free_split(ret), NULL);
 		(*i)++;
 	}
-	if (!map_n_player(file_content, *i, 0, 0))
-		return (free_split(ret), NULL);
 	if (cnt_line_not_map < 6)
 		return (print_fd(2, "Error\nToo little infos\n"),
 			free_split(ret), NULL);
+	if (!map_n_player(file_content, *i, 0, 0))
+		return (free_split(ret), NULL);
 	return (ret);
 }
 
