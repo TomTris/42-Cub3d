@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:00:29 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 19:24:52 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:34:39 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef struct s_norm_facing
 	int		x0;
 	int		y0;
 	int		x1;
-	int		x2;
+	int		y1;
 	int		dx;
 	int		dy;
 	int		steps;
@@ -29,7 +29,7 @@ typedef struct s_norm_facing
 
 uint32_t	limits(u_int32_t	t)
 {
-	if (t < AMOUNT_SQUARES * AMOUNT_SQUARES - 1)
+	if (t > AMOUNT_SQUARES * AMOUNT_SQUARES - 1)
 		return (AMOUNT_SQUARES * AMOUNT_SQUARES - 1);
 	return (t);
 	
@@ -55,10 +55,10 @@ void	dda(t_data *data, t_ray *ray)
 	var.x = var.x0;
 	var.y = var.y0;
 	i = -1;
-	while (++i <= steps)
+	while (++i <= var.steps)
 	{
-		mlx_put_pixel(data->minimap,
-			(uint32_t)lround(var.x) > 287 ? 287: (uint32_t)lround(var.x), (uint32_t)lround(var.y) > 287 ? 287: (uint32_t)lround(var.y), 255 << 16 | 255);
+		mlx_put_pixel(data->minimap, limits((uint32_t)lround(var.x)),
+			limits((uint32_t)lround(var.y)), 255 << 16 | 255);
 		var.x += var.xinc;
 		var.y += var.yinc;
 	}
