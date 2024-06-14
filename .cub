@@ -1,9 +1,9 @@
-NO ./textures/1.png
-WE textures/2.png
-EA textures/3.png
+NO textures/north.png
+WE textures/west.png
+EA textures/east.png
 
 
-SO   textures/4.png
+SO   textures/south.png
 
 F 220,100,000000101                
 C 225,   001,  11
