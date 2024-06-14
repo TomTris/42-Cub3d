@@ -4,46 +4,35 @@
 
 #include <stdio.h>
 #include <unistd.h>
-
-#define WIDTH 512
-#define HEIGHT 512
-
-static void error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
-
 #include "cube3d.h"
 
+int main(void) {
+    // Initialize MLX
+    mlx_t *mlx = mlx_init(800, 600, "Cursor Example", false);
+    if (!mlx) {
+        fprintf(stderr, "Failed to initialize MLX42\n");
+        return EXIT_FAILURE;
+    }
 
-int32_t	main(void)
-{
-	// Start mlx
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "Test", true);
-	if (!mlx)
-        error();
+    // Load the cursor image
+    mlx_texture_t *cursor_img = mlx_load_png("textures/cursor.png");
+    if (!cursor_img) {
+        fprintf(stderr, "Failed to load cursor image\n");
+        mlx_terminate(mlx);
+        return EXIT_FAILURE;
+    }
 
-	// Try to load the file
-	mlx_texture_t* texture = mlx_load_png("./textures/east.png");
-	if (!texture)
-        error();
-	
-	// Convert texture to a displayable image
-	mlx_image_t* img = mlx_texture_to_image(mlx, texture);
-	if (!img)
-        error();
+	mlx_win_cursor_t *t =  mlx_create_cursor(cursor_img);
+    // Set the custom cursor
+    mlx_set_cursor(mlx, t);
+	mlx_set_mouse_pos(mlx, 400, 300);
+	write(1, "Ads", 3);
+    // Main loop
 
-	// Display the image
-	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
-        error();
+        mlx_loop(mlx);
 
-	mlx_loop(mlx);
+    // Clean up
+        mlx_terminate(mlx);
 
-
-	// Optional, terminate will clean up any leftovers, this is just to demonstrate.
-	mlx_delete_image(mlx, img);
-	mlx_delete_texture(texture);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+    return EXIT_SUCCESS;
 }

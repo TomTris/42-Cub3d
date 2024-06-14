@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:18:53 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 16:01:52 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:08:25 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,24 @@
 void	rotate_view(t_data *data)
 {
 	double	t;
+	int		boost;
 
 	t = data->player->angle_turn_horizontal;
+	boost = 0;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
+		boost = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		t = add_angles(t, -0.02);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		t = add_angles(t, 0.02);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		move_in_line(data, data->player->angle_turn_horizontal);
+		move_in_line(data, data->player->angle_turn_horizontal, boost);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		move_in_line(data, add_angles(data->player->angle_turn_horizontal, M_PI));
+		move_in_line(data, add_angles(data->player->angle_turn_horizontal, M_PI), boost);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		move_in_line(data, add_angles(data->player->angle_turn_horizontal, M_PI / 2.0));
+		move_in_line(data, add_angles(data->player->angle_turn_horizontal, M_PI / 2.0), boost);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		move_in_line(data, add_angles(data->player->angle_turn_horizontal, M_PI / -2.0));
+		move_in_line(data, add_angles(data->player->angle_turn_horizontal, M_PI / -2.0), boost);
 	data->player->angle_turn_horizontal = t;
 }
 

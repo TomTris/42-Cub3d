@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:49:55 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 18:40:44 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:26:53 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,22 @@ double	get_factor(double angle)
 		return (0.0);
 }
 
-void	move_in_line(t_data *data, double angle)
+double	get_distance(int boost)
+{
+	if (boost == 1)
+		return (MINMOVE * 2.0);
+	return (MINMOVE);
+}
+
+void	move_in_line(t_data *data, double angle, int boost)
 {
 	double	new_x;
 	double	new_y;
 	double	sinus;
 	double	cosinus;
 
-	sinus = -sin(angle) * MINMOVE;
-	cosinus = cos(angle) * MINMOVE;
+	sinus = -sin(angle) * get_distance(boost);
+	cosinus = cos(angle) * get_distance(boost);
 	new_x = data->player->x + cosinus;
 	new_y = data->player->y + sinus;
 	if (!is_not_walkable(data->map[(int)data->player->y] \

@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 10:45:05 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:01:10 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	draw_rays(t_data *data, t_ray *ray)
 		temp = get_texture(data, ray[i].texture);
 		// dprintf(1, ">>>>>%i     %i<<<\n", i, ray[i].texture);
 		// printf("%u\n", get_pixel(temp, 50, 50));
-		render_height(data->image, temp, temp->height, 1.0 / ray[i].distance, get_wid_on_texture(data, &ray[i]), i);
+		render_height(data->image, temp, temp->height, 1.0 / ray[i].distance, get_wid_on_texture(data, &ray[i]), AMOUNT_OF_RAYS - 1 - i);
 		raya(i, 0);
 		// DDA(data, &ray[i]);
 		i++;

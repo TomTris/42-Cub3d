@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:28:20 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/13 18:45:18 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:35:45 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void	draw_space(t_data *data, int x, int y, int color)
 	int	e;
 
 	i = 0;
-	while (i < 32)
+	while (i < MINIMAP_SQUARE)
 	{
 		e = 0;
-		while (e < 32)
+		while (e < MINIMAP_SQUARE)
 		{
-			mlx_put_pixel(data->minimap, 32 * x + e, 32 * y + i, color);
+			mlx_put_pixel(data->minimap, MINIMAP_SQUARE * x + e, \
+			MINIMAP_SQUARE * y + i, color);
 			e++;
 		}
 		i++;
@@ -62,10 +63,34 @@ void	draw_stuff(t_data *data, t_mini	*minimap)
 	}
 }
 
+void	fill_first_time(t_data *data)
+{
+	static int	first = 1;
+	int			y;
+	int			x;
+
+	if (first)
+	{
+		y = 0;
+		while (y < (int)data->minimap->height)
+		{
+			x = 0;
+			while (x < (int)data->minimap->width)
+			{
+				mlx_put_pixel(data->minimap, x, y, 255);
+				x++;
+			}
+			y++;
+		}
+		first = 0;
+	}
+}
+
 void	draw_mini_map(t_data *data, t_ray *ray)
 {
 	t_mini	minimap;
 
+	fill_first_time(data);
 	get_players_x_y(data, &minimap.x_player, &minimap.y_player);
 	minimap.x_player -= 4;
 	minimap.y_player -= 4;
