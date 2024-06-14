@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:03:47 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 17:09:44 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/14 17:17:35 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ void	recover_d(t_po **d, char **map)
 	{
 		while (d[0] != 0)
 		{
-			printf("recoverd: x = %d, y= %d\n", d[0]->x, d[0]->y);
 			if (map[d[0]->x][d[0]->y + 1] != '1'
 				|| map[d[0]->x][d[0]->y -1] != '1'
 				|| map[d[0]->x + 1][d[0]->y] != '1'
 				|| map[d[0]->x - 1][d[0]->y] != '1')
 			{
 				map[d[0]->x][d[0]->y] = 'd';
-				printf("recover d\n");
 			}
 			temp = d[0];
 			d[0] = d[0]->next;
@@ -134,15 +132,15 @@ t_map	*ft_map(int ac, char **av)
 // 	map = ft_map(ac, av);
 // 	if (map == 0)
 // 		return (printf("somewher wrong\n"), 1);
-// 	printf("%d\n", map->dire);
-// 	printf("%f\n", map->x);
-// 	printf("%f\n", map->y);
-// 	printf("%s\n", map->no);
-// 	printf("%s\n", map->so);
-// 	printf("%s\n", map->we);
-// 	printf("%s\n", map->ea);
-// 	printf("%u\n", map->floor);
-// 	printf("%u\n", map->ceiling);
+// 	// printf("%d\n", map->dire);
+// 	// printf("%f\n", map->x);
+// 	// printf("%f\n", map->y);
+// 	// printf("%s\n", map->no);
+// 	// printf("%s\n", map->so);
+// 	// printf("%s\n", map->we);
+// 	// printf("%s\n", map->ea);
+// 	// printf("%u\n", map->floor);
+// 	// printf("%u\n", map->ceiling);
 
 // 	int	i =0;
 // 	while (map->map[i])
@@ -156,5 +154,5 @@ t_map	*ft_map(int ac, char **av)
 // int	main(int ac, char **av)
 // {
 // 	main2(ac, av);
-// 	// system("leaks parsing.a");
+// 	system("leaks parsing.a");
 // }
