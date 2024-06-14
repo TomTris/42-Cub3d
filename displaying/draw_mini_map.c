@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:28:20 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 12:35:45 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:37:42 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,15 @@ void	draw_mini_map(t_data *data, t_ray *ray)
 
 	fill_first_time(data);
 	get_players_x_y(data, &minimap.x_player, &minimap.y_player);
-	minimap.x_player -= 4;
-	minimap.y_player -= 4;
+	minimap.x_player -= (int)(AMOUNT_SQUARES / 2);
+	minimap.y_player -= (int)(AMOUNT_SQUARES / 2);
 	minimap.y = 0;
 	minimap.end = 0;
-	while (minimap.y < 9)
+	while (minimap.y < AMOUNT_SQUARES)
 	{
 		minimap.can_access = 1;
 		minimap.x = 0;
-		while (minimap.x < 9)
+		while (minimap.x < AMOUNT_SQUARES)
 		{
 			draw_stuff(data, &minimap);
 			minimap.x++;
@@ -108,7 +108,7 @@ void	draw_mini_map(t_data *data, t_ray *ray)
 		}
 		minimap.y++;
 		minimap.y_player++;
-		minimap.x_player -= 9;
+		minimap.x_player -= AMOUNT_SQUARES;
 	}
 	draw_player(data);
 	draw_rays(data, ray);
