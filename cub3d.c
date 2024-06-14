@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adding_numbers.c                                   :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/09 16:35:22 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 20:23:13 by qdo              ###   ########.fr       */
+/*   Created: 2024/06/09 11:58:53 by obrittne          #+#    #+#             */
+/*   Updated: 2024/06/14 20:43:23 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
-double	add_angles(double angle1, double angle2)
+int	main(int ac, char **av)
 {
-	angle1 += angle2;
-	if (angle1 >= 2.0 * M_PI)
-		angle1 -= (2.0 * M_PI);
-	if (angle1 < 0.0)
-		angle1 += (2.0 * M_PI);
-	return (angle1);
+	t_data		data;
+	t_map		*parsing;
+	t_player	player;
+
+	data.player = &player;
+	parsing = ft_map(ac, av);
+	if (parsing == 0)
+		return (1);
+	display(&data, parsing);
+	return (EXIT_SUCCESS);
 }

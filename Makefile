@@ -1,11 +1,18 @@
-NAME		= cub3d
-NAME_DOOR	= cub3d_door
-CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code
-CC = gcc
+NAME			= cub3d
+NAME_BONUS		= cub3d_bonus
+CFLAGS			= -Wextra -Wall -Werror -Wunreachable-code
+CC 				= cc
 
+PARSING_DIR = parsing
+PARSING_BONUS_DIR = parsing_bonus
+
+PARSING = parsing/parsing.a
+PARSING_BONUS = parsing_bonus/parsing.a
+LIBFT_DIR = libft
 FT_LIBS =	MLX42/build/libmlx42.a
+LIBFT	= libft/libft.a
 
-CFILES	=	main.c\
+SRC	=		cub3d.c\
 			strings_utils/len.c\
 			displaying/freeing.c\
 			displaying/display.c\
@@ -21,40 +28,50 @@ CFILES	=	main.c\
 			rays/transform_cord_minimap.c\
 			rays/horizonatal.c\
 			rays/vertical.c\
-			To/get_pixel.c
+			render/get_pixel.c
 
 
-
-OBJS = $(CFILES:.c=.o)
-
+OBJS = $(SRC:.c=.o)
 all:  $(NAME)
 
-$(NAME_DOOR) : $(FT_LIBS) $(OBJS) 
-	make -C parsing_bonus
-	$(CC)  $(CFLAGS) $(OBJS) parsing_bonus/parsing.a parsing_bonus/libft/libft.a $(FT_LIBS) -o $(NAME_DOOR) -ldl -lglfw -lm -g
-	@echo "\033[34m'$(NAME_DOOR)'\033[0m is ready to execute!"
+$(NAME_BONUS) : $(FT_LIBS) $(OBJS) $(PARSING_BONUS) $(LIBFT)
+	$(CC)  $(CFLAGS) $(OBJS) $(PARSING_BONUS) $(LIBFT) $(FT_LIBS) -o $(NAME_BONUS) -ldl -lglfw -lm -g
+	@echo "\033[34m'$(NAME_BONUS)'\033[0m is ready to execute!"
 	
-$(NAME): $(FT_LIBS) $(OBJS) 
-	make -C parsing
-	$(CC)  $(CFLAGS) $(OBJS) parsing/parsing.a parsing/libft/libft.a $(FT_LIBS) -o $(NAME) -ldl -lglfw -lm -g
+$(NAME): $(FT_LIBS) $(OBJS) $(PARSING) $(LIBFT)
+	$(CC)  $(CFLAGS) $(OBJS) $(PARSING) $(LIBFT) $(FT_LIBS) -o $(NAME) -ldl -lglfw -lm -g
 	@echo "\033[34m'$(NAME)'\033[0m is ready to execute!"
 
+$(PARSING):
+	@make -C parsing
+$(PARSING_BONUS):
+	@make -C parsing_bonus
+$(LIBFT):
+	@make -C libft
+
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-# $(FT_LIBS): 
-# 	git clone https://github.com/codam-coding-college/MLX42.git
-# 	cd MLX42 && cmake -B build && cmake --build build -j4
+	@$(CC) $(CFLAGS) -c $< -o $@
+$(FT_LIBS):
+	@git clone https://github.com/codam-coding-college/MLX42.git
+	@cd MLX42 && cmake -B build && cmake --build build -j4
 
 
 clean:
 	@rm -rf $(OBJS)
+	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(PARSING_DIR)
+	@make fclean -C $(PARSING_BONUS_DIR)
 	@rm -rf MLX42
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(NAME_BONUS)
+	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(PARSING_DIR)
+	@make fclean -C $(PARSING_BONUS_DIR)
 
 re: fclean all
 
-bonus: $(NAME_DOOR)
+bonus: $(NAME_BONUS)
 
 .PHONY: all clean fclean re bonus
