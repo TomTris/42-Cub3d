@@ -6,7 +6,7 @@
 /*   By: obrittne <obrittne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:17:44 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 19:25:39 by obrittne         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:30:28 by obrittne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_rays(t_data *data, t_ray *ray)
 		M_PI / 3.0 / AMOUNT_OF_RAYS * ((double) i) - (M_PI / 6.0)), &ray[i]);
 		transform_cordinates(data, &ray[i]);
 		render.image = data->image;
-		render.texture = get_texture(data, ray[i].texture);
+		render.texture = get_texture(data, &ray[i], ray[i].texture);
 		render.texture_hei = render.texture->height;
 		render.rate = 1.0 / ray[i].distance;
 		render.wid_on_texture = get_wid_on_texture(data, &ray[i]);
