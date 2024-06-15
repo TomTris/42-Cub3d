@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:18:53 by obrittne          #+#    #+#             */
-/*   Updated: 2024/06/14 20:23:13 by qdo              ###   ########.fr       */
+/*   Updated: 2024/06/15 15:23:52 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ void	mouse(void	*param)
 	int32_t		y;
 
 	data = (t_data *)param;
-	if (first)
+	if (first < 20)
 	{
 		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
-		first = 0;
+		first++;
 	}
 	else
 	{
