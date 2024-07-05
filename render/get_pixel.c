@@ -6,7 +6,7 @@
 /*   By: qdo <qdo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:35:48 by qdo               #+#    #+#             */
-/*   Updated: 2024/06/14 20:23:13 by qdo              ###   ########.fr       */
+/*   Updated: 2024/07/05 10:51:17 by qdo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,19 @@ void	render_height_less_than_1(t_render *r)
 	double	hei_highest ;
 	int		a;
 	int		b;
+	int		c = r->wid_on_screen - 512;
 
-	height_cnt = (WINDOW_HEIGHT + WINDOW_HEIGHT * r->rate) / 2;
-	hei_highest = (WINDOW_HEIGHT - WINDOW_HEIGHT * r->rate) / 2;
+
+	double angle = cos((double)30 * (double)c * M_PI / (double)512 / (double)180);
+	height_cnt = (double)(WINDOW_HEIGHT + WINDOW_HEIGHT * r->rate / angle) / 2;
+	hei_highest = (double)(WINDOW_HEIGHT - WINDOW_HEIGHT * r->rate / angle) / 2;
+	if (height_cnt > WINDOW_HEIGHT)
+		height_cnt = WINDOW_HEIGHT;
+	if (hei_highest < 0)
+		hei_highest = 0;
+
+
+
 	while (height_cnt >= hei_highest)
 	{
 		height_on_texture = (height_cnt - hei_highest) \
